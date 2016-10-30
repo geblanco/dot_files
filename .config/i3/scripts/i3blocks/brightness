@@ -29,4 +29,9 @@ case $BLOCK_BUTTON in
   5) xbacklight -${AMNT} ;; # decrease
 esac
 
+# read the first line of the "xbacklight" command output
+if [[ $(xbacklight 2>&1) == "No"* ]]; then
+  exit
+fi
+
 status
