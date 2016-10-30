@@ -1,0 +1,32 @@
+#!/bin/bash
+#------------------------------------------------------------------------
+# #00FF00	Bright green
+# #00d0ff	Brighter Blue
+# #0c00ff 	Bright Blue
+# #9800ff - Bright Purple
+#------------------------------------------------------------------------
+
+AMNT=5
+
+status() {
+	local percent=$(xbacklight -get | awk '{ printf("%.0f\n", $1) }')
+  	echo $percent% # full text
+	echo $percent% # short text
+  	if [[ $percent -ge 80 ]]; then
+	    echo "#00FF00"
+	elif [[ $percent -lt 80 ]]; then
+	    echo "#00d0ff"
+	elif [[ $percent -lt 60 ]]; then
+	    echo "#0c00ff"
+	elif [[ $percent -lt 40 ]]; then
+	    echo "#9800ff"
+	fi
+}
+#------------------------------------------------------------------------
+
+case $BLOCK_BUTTON in
+  4) xbacklight +${AMNT} ;; # increase
+  5) xbacklight -${AMNT} ;; # decrease
+esac
+
+status

@@ -10,7 +10,8 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
-set $scriptdir $HOME/.config/i3
+set $configdir $HOME/.config/i3
+set $scriptdir $HOME/.config/i3/scripts
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -38,8 +39,6 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
-# bindsym $mod+d exec electron $HOME/Documents/Dev/mutant_new_router
-# bindsym $mod+d exec mutant
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -88,6 +87,10 @@ bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
+
+# floating scratchpad
+bindsym $mod+z move scratchpad
+bindsym $mod+x scratchpad show
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -165,34 +168,25 @@ bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'X session op
   -b 'Logout i3' 'i3-msg exec $scriptdir/i3exit logout' \
   -b 'Lock i3' 'i3-msg exec $scriptdir/i3exit lock'"
 
-# Scratchpad
-# Make window scratchpad
-bindsym $mod+z move scratchpad
-# Show scratchpad window
-bindsym $mod+x scratchpad show
-
 # Lock
-bindsym $mod+Shift+BackSpace exec --no-startup-id $scriptdir/lock.sh
-#bindsym $mod+Shift+BackSpace exec --no-startup-id i3lock -i $scriptdir/imgs/lock.png
+bindsym $mod+Shift+BackSpace exec --no-startup-id $HOME/.config/i3/scripts/lock
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
   position top
-  status_command i3blocks -c $scriptdir/i3blocks.conf
+  status_command i3blocks -c $configdir/i3blocks.conf
 }
 
 # Setup
 # make mutant floating window
 for_window [class="Mutant" instance="mutant"] floating enable
-# for_window [name="Terminal - xfce4-terminal --drop-down"] floating enable
+exec electron $HOME/Documents/Dev/mutant_new_router
 
 # Startup scripts
 # Display
-exec /opt/scripts/ds -o
+exec [[ $IS_DESKTOP -eq 1 ]] && /opt/scripts/ds -o
 # Background
-exec_always feh --bg-scale /usr/share/backgrounds/optics_greenopt.jpg
+exec_always feh --bg-scale $BACKGROUND
 
-# Mutant
-# exec electron $HOME/Documents/Dev/mutant_new_router
 

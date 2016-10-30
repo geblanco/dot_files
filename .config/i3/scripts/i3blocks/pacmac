@@ -1,0 +1,51 @@
+#!/bin/bash
+#------------------------------------------------------------------------
+
+update_dbs(){
+  if [[ $# -gt 0 ]]; then
+    yaourt -Sy 2>/dev/null
+  else
+    (yaourt -Sy 2>/dev/null) &
+  fi
+}
+
+fetch(){
+  update_dbs 1
+  check_for_updates
+}
+
+check_for_updates(){
+  local updates=$(yaourt -Qu | awk '{print $1}' | wc -l)
+  if [[ $updates -eq 0 ]]; then
+    exit
+  fi
+  echo $updates
+    # color
+  if [[ $updates -ge 20 ]]; then
+      echo "#FF0000"
+  elif [[ $updates -lt 20 ]]; then
+      echo "#FFAE00"
+  elif [[ $updates -lt 10 ]]; then
+      echo "#FFF600"
+  elif [[ $updates -lt 5 ]]; then
+      echo "#00FF00"
+  fi
+}
+
+start_updater(){
+  if hash pamac-updater 2>/dev/null; then
+    (exec pamac-updater) &
+  else
+    (exec i3-sensible-terminal -e 'yaourt -Qu') &
+  fi
+}
+
+#------------------------------------------------------------------------
+
+case $BLOCK_BUTTON in
+  1) start_updater ;;  # left click, start updater
+  #3) fetch ;;          # right click, sync dbs and update banner
+esac
+
+update_dbs
+check_for_updates
