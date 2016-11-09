@@ -161,10 +161,10 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'X session options:' \
-  -b 'Shutdown i3' 'i3-msg exec $scriptdir/i3exit shutdown' \
-  -b 'Reboot i3' 'i3-msg exec $scriptdir/i3exit reboot' \
-  -b 'Hibernate i3' 'i3-msg exec $scriptdir/i3exit hibernate' \
-  -b 'Suspend i3' 'i3-msg exec $scriptdir/i3exit suspend' \
+  -b 'Shutdown' 'i3-msg exec $scriptdir/i3exit shutdown' \
+  -b 'Reboot' 'i3-msg exec $scriptdir/i3exit reboot' \
+  -b 'Hibernate' 'i3-msg exec $scriptdir/i3exit hibernate' \
+  -b 'Suspend' 'i3-msg exec $scriptdir/i3exit suspend' \
   -b 'Logout i3' 'i3-msg exec $scriptdir/i3exit logout' \
   -b 'Lock i3' 'i3-msg exec $scriptdir/i3exit lock'"
 
@@ -181,7 +181,7 @@ bar {
 # Setup
 # make mutant floating window
 for_window [class="Mutant" instance="mutant"] floating enable
-exec electron $HOME/Documents/Dev/mutant_new_router
+exec_always --no-startup-id /usr/bin/electron $HOME/Documents/Dev/mutant_new_router
 
 # Startup scripts
 # Display
