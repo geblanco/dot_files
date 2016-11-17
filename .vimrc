@@ -1,3 +1,4 @@
+
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
@@ -18,9 +19,12 @@ Plugin 'https://github.com/scrooloose/nerdtree'
 " Nice fuzzy search
 Plugin 'https://github.com/kien/ctrlp.vim'
 " Provides Monokai
-Plugin 'https://github.com/flazz/vim-colorschemes'
-" Better js indentation, could be deleted
+" Plugin 'https://github.com/flazz/vim-colorschemes'
+Plugin 'crusoexia/vim-monokai'
+" Better js indentation
 Plugin 'https://github.com/pangloss/vim-javascript'
+" Better js completions 
+Plugin 'crusoexia/vim-javascript-lib'
 " Autocompletion on tab
 Plugin 'https://github.com/vim-scripts/AutoComplPop'
 " Status line
@@ -37,7 +41,8 @@ filetype plugin indent on    " required
 let g:ctrlp_map = '<F3>'
 map <F2> : NERDTreeToggle<CR>
 
-colorscheme Monokai
+colorscheme monokai
+set t_Co=256
 
 set number
 
@@ -48,8 +53,7 @@ nnoremap <C-Left> gT
 set laststatus=2
 set term=xterm-256color
 set termencoding=utf-8
-set guifont=Ubuntu\ Mono\ derivative\ Powerline:10
-
+set guifont=Ubuntu\ Mono\ derivative\ Powerline:8
 let g:Powerline_symbols = 'fancy'
 
 " show existing tab with 2 spaces width
@@ -59,20 +63,21 @@ set shiftwidth=2
 " On pressing tab, insert 4 spaces
 set expandtab
 
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
-set autoindent		" always set autoindenting on
+set history=50    " keep 50 lines of command line history
+set ruler   " show the cursor position all the time
+set showcmd   " display incomplete commands
+set incsearch   " do incremental searching
+"set autoindent   " always set autoindenting on
+set foldmethod=indent
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
 if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
+  set nobackup    " do not keep a backup file, use versions instead
 else
-  set backup		" keep a backup file (restore to previous version)
-  set undofile		" keep an undo file (undo changes after closing)
+  set backup    " keep a backup file (restore to previous version)
+  set undofile    " keep an undo file (undo changes after closing)
 endif
 
 " Switch syntax highlighting on, when the terminal has colors
