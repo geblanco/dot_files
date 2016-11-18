@@ -70,6 +70,13 @@ set incsearch   " do incremental searching
 "set autoindent   " always set autoindenting on
 set foldmethod=indent
 
+" allow mouse interaction
+set mouse=n
+
+set undodir=~/.vim/undo//
+set directory=~/.vim/swap//
+set backupdir=~/.vim/backup//
+
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
