@@ -4,6 +4,7 @@ export PS1='-\[\033[01;32m\][\u@\h\[\033[01;37m\] - \t - \W]\n\[\033[01;32m\]]\$
 export PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\n|-\$\[\033[00m\] '
 alias subl='subl3'
 alias dev='cd ~/Documents/Dev'
+alias tfg='cd ~/Documents/TFG && source ./pkgs/sim_vars.sh'
 alias pbCopy='xclip -sel clip'
 alias pbPaste='xclip -o -sel clip'
 export NODE_PATH='/home/gb/.npm-global/lib/node_modules'

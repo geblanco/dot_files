@@ -189,4 +189,6 @@ exec [[ $IS_DESKTOP -eq 1 ]] && /opt/scripts/ds -o
 # Background
 exec_always feh --bg-scale $BACKGROUND
 
+# Simulator windows
+for_window [class="Mavproxy.py" instance="mavproxy.py"] floating enable
 
