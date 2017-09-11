@@ -90,6 +90,7 @@ bindsym $mod+space focus mode_toggle
 
 # floating scratchpad
 bindsym $mod+z move scratchpad
+# bindsym $mod+x exec --no-startup-id xfce4-terminal --drop-down
 bindsym $mod+x scratchpad show
 
 # focus the parent container
@@ -121,6 +122,19 @@ bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
+
+set $mon1 "HDMI2"
+set $mon2 "HDMI1"
+workspace 1 output $mon1
+workspace 2 output $mon2
+workspace 3 output $mon1
+workspace 4 output $mon2
+workspace 5 output $mon1
+workspace 6 output $mon2
+workspace 7 output $mon1
+workspace 8 output $mon2
+workspace 9 output $mon1
+workspace 10 output $mon2
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -180,6 +194,7 @@ bar {
 
 # Setup
 # make mutant floating window
+for_window [class="gitbook-editor" instance="gitbook-editor"] floating enable
 for_window [class="Mutant" instance="mutant"] floating enable
 exec_always --no-startup-id /usr/bin/electron $HOME/Documents/Dev/mutant_new_router
 
@@ -188,7 +203,4 @@ exec_always --no-startup-id /usr/bin/electron $HOME/Documents/Dev/mutant_new_rou
 exec [[ $IS_DESKTOP -eq 1 ]] && /opt/scripts/ds -o
 # Background
 exec_always feh --bg-scale $BACKGROUND
-
-# Simulator windows
-for_window [class="Mavproxy.py" instance="mavproxy.py"] floating enable
 

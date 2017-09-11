@@ -25,13 +25,25 @@ alias you-dl='youtube-dl -xi --yes-playlist --audio-format "wav" -o "%(title)s.%
 # npm global path (fix permissions)
 export PATH="~/.npm-global/bin:$PATH"
 
+# ruby gems global path
+export PATH="~/.gem/ruby/2.4.0/bin:$PATH"
+
 # This will change your title to the last command run, 
 # and make sure your history file is always up-to-date:
 export HISTCONTROL=ignoreboth
 export HISTIGNORE='history*':$HISTIGNORE
-export PROMPT_COMMAND='history -a;echo -en "\e]2;";history 1|sed "s/^[ \t]*[0-9]\{1,\}  //g";echo -en "\e\\"; source ~/.config/sh_theme;'
+#export PROMPT_COMMAND='history -a;echo -en "\e]2;";history 1|sed "s/^[ \t]*[0-9]\{1,\}  //g";echo -en "\e\\"; source ~/.config/sh_theme;'
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg --work-tree=$HOME'
 
 # Load theme
-[[ -f ~/.config/sh_theme ]] && source ~/.config/sh_theme
+#[[ -f ~/.config/sh_theme ]] && source ~/.config/sh_theme
+
+function _update_ps1() {
+  PS1="$(/home/gb/Documents/Dev/powerline-shell/start.py $? 2> /dev/null)\n$(/home/gb/Documents/Dev/powerline-shell/powerline-shell.py $? 2> /dev/null)"
+}
+
+if [ "$TERM" != "linux" ]; then
+    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+fi
+
