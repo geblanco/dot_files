@@ -1,0 +1,15 @@
+A File Icon
+Boxy Theme
+Color Highlighter
+DocBlockr
+Dockerfile Syntax Highlighting
+EJS 2
+ES6-Toolkit
+GitGutter
+GitStatusBar
+JavaScriptNext - ES6 Syntax
+JSON Reindent
+MarkdownHighlighting
+Markdown Preview
+Package Control
+Text Pastry
