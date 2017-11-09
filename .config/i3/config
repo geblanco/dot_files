@@ -136,6 +136,12 @@ workspace 8 output $mon2
 workspace 9 output $mon1
 workspace 10 output $mon2
 
+# predefined apps to workspaces
+# intended use should be with assign but some clients 
+# manage the window before naming it, causing i3 to not recognise it
+for_window [class="Spotify"] move to workspace 3
+for_window [class="Mendeley Desktop"] move to workspace 4
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
   # These bindings trigger as soon as you enter the resize mode
@@ -188,19 +194,19 @@ bindsym $mod+Shift+BackSpace exec --no-startup-id $HOME/.config/i3/scripts/lock
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-  position top
-  status_command i3blocks -c $configdir/i3blocks.conf
+  # position top
+  # status_command i3blocks -c $configdir/i3blocks.conf
+  i3bar_command $HOME/.config/polybar/launch.sh
 }
 
 # Setup
 # make mutant floating window
-for_window [class="gitbook-editor" instance="gitbook-editor"] floating enable
 for_window [class="Mutant" instance="mutant"] floating enable
 exec_always --no-startup-id /usr/bin/electron $HOME/Documents/Dev/mutant_new_router
+for_window [class="VirtualBox"] floating enable
 
 # Startup scripts
 # Display
-exec [[ $IS_DESKTOP -eq 1 ]] && /opt/scripts/ds -o
+exec [[ $IS_DESKTOP -eq 1 ]] && /opt/scripts/ds -t
 # Background
 exec_always feh --bg-scale $BACKGROUND
-

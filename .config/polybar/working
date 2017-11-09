@@ -1,0 +1,205 @@
+;=====================================================
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;
+;=====================================================
+[colors]
+	background = #222222
+	foreground = #eefafafa
+	foreground-alt = #66
+	linecolor = #fba922
+
+[bar/main]
+	;override-redirect = true
+	wm-restack = i3
+
+	monitor = ${env:MONITOR}
+	width = 100%
+	height = 27
+
+	background = ${colors.background}
+	foreground = ${colors.foreground}
+
+	spacing = 3
+	lineheight = 2
+	padding-right = 2
+	module-margin-left = 1
+	module-margin-right = 1
+
+	font-0 = NotoSans-Regular:pixelsize=10;1
+	font-1 = NotoSans-Regular:pixelsize=10;3
+	font-2 = FontAwesome:pixelsize=12;1
+	font-4 = MaterialIcons:size=10;-1
+
+	modules-left = i3
+	modules-right = volume keyboard gmail pkg separator cpu memory separator date powermenu
+
+	tray-position = right
+	tray-padding = 2
+
+	tray-transparent = false
+	underline-size = 3
+
+[module/i3]
+	type = internal/i3
+	format = <label-state> <label-mode>
+	pin-workspaces = true
+
+	ws-icon-0 = 1;
+	ws-icon-1 = 3;♫
+	ws-icon-2 = 2;
+	ws-icon-3 = 4;
+
+	;ws-icon-2 = code;
+	
+	;ws-icon-4 = irssi;
+	;ws-icon-0 = 1;
+	;ws-icon-1 = 2;
+	;ws-icon-2 = 3;
+	;ws-icon-3 = music;
+	;ws-icon-4 = 5;
+
+	ws-icon-default = 
+
+	label-focused = %icon% %name%
+	label-focused-foreground = #ffffff
+	label-focused-background = #3f3f3f
+	label-focused-underline = #fba922
+	label-focused-padding = 2
+
+	label-visible = %icon% %name%
+	label-visible-underline = #555555
+	label-visible-padding = 2
+
+	label-unfocused = %icon% %name%
+	label-unfocused-underline = #555555
+	label-unfocused-padding = 2
+
+	label-urgent = %icon% %name%
+	label-urgent-foreground = #000000
+	label-urgent-background = #bd2c40
+	label-urgent-underline = #9b0a20
+	label-urgent-padding = 2
+
+[module/volume]
+	type = internal/volume
+	master-mixer = Master
+
+	format-volume = <label-volume> <bar-volume>
+
+	label-muted = 
+	label-muted-foreground = ${colors.foreground-alt}
+
+	label-volume = 
+	label-volume-foreground = ${colors.foreground}
+
+	bar-volume-width = 10
+	bar-volume-foreground-0 = #55aa55
+	bar-volume-foreground-1 = #55aa55
+	bar-volume-foreground-2 = #55aa55
+	bar-volume-foreground-3 = #55aa55
+	bar-volume-foreground-4 = #55aa55
+	bar-volume-foreground-5 = #f5a70a
+	bar-volume-foreground-6 = #ff5555
+	bar-volume-gradient = false
+	bar-volume-indicator = |
+	bar-volume-indicator-font = 2
+	bar-volume-fill = ─
+	bar-volume-fill-font = 2
+	bar-volume-empty = ─
+	bar-volume-empty-font = 2
+	bar-volume-empty-foreground = ${colors.foreground}
+
+	mapping = true
+
+[module/keyboard]
+	type = internal/xkeyboard
+	
+	blacklist-0 = num lock
+
+	format-prefix = %{T2} ⌨ %{T-}
+	label-layout = %{T2} %name% %{T-}
+	label-indicator-padding = 2
+
+[module/gmail]
+	type = custom/script
+	exec = $HOME/.config/polybar/gmail/launch.py --nosound
+	exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
+	label-font = 2
+	tail = true
+	click-left = xdg-open https://mail.google.com
+
+[module/pkg]
+	type = custom/script
+	interval = 1200
+	format = <label>
+	label = "%{T2} %output:0:30% %{T-}"
+	exec = $HOME/.config/polybar/pkg.sh
+	exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
+
+[module/separator]
+	type = custom/text
+	content = |
+	content-padding = 2
+
+[module/cpu]
+	type = internal/cpu
+
+	format = <label>
+	label-font = 2
+	label = CPU %{F#99} %percentage%% %{F-}
+
+[module/memory]
+	type = internal/memory
+
+	format = <label>
+	label-font = 2
+	label = RAM %{F#99} %percentage_used%% %{F-}
+
+[module/date]
+	type = internal/date
+	label-font = 2
+	date = %%{F#fff}%Y-%m-%d%%{F-}  %%{F#99}%H:%M%%{F-}
+	date-alt = %%{F#fff}%A, %d %B %Y  %%{F#fff}%H:%M%%{F#666}:%%{F#fba922}%S%%{F-}
+
+[module/powermenu]
+	type = custom/menu
+
+	format-padding = 1
+
+	label-open = 
+	label-close = 
+	label-separator = |
+
+	menu-0-0 = %{T2} Terminate WM %{T-}
+	menu-0-0-foreground = #fba922
+	menu-0-0-exec = i3-msg exit
+
+	menu-0-1 = %{T2} Reboot %{T-}
+	menu-0-1-foreground = #fba922
+	menu-0-1-exec = menu-open-1
+	
+	menu-0-2 = %{T2} Power off %{T-}
+	menu-0-2-foreground = #fba922
+	menu-0-2-exec = menu-open-2
+
+	menu-1-0 = %{T2} Reboot %{T-}
+	menu-1-0-foreground = #fba922
+	menu-1-0-exec = reboot
+	
+	menu-1-1 = %{T2} Cancel %{T-}
+	menu-1-1-foreground = #fba922
+	menu-1-1-exec = menu-open-0
+
+	menu-2-0 = %{T2} Power off %{T-}
+	menu-2-0-foreground = #fba922
+	menu-2-0-exec = poweroff
+	
+	menu-2-1 = %{T2} Cancel %{T-}
+	menu-2-1-foreground = #fba922
+	menu-2-1-exec = menu-open-0
+
+; vim:ft=dosini

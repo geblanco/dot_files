@@ -1,8 +1,9 @@
-alias subl='subl3'
+alias subl='/opt/sublime_text/sublime_text'
 alias dev="cd ~/Documents/Dev/"
-alias tfg="cd ~/Documents/TFG/"
-alias pbCopy='xclip -sel clip'
-alias pbPaste='xclip -o -sel clip'
+alias master="cd ~/Documents/AIMaster/Curso/"
+# done by script in bin
+#alias pbCopy='xclip -sel clip'
+#alias pbPaste='xclip -o -sel clip'
 alias getClip='xclip -o --sel | pbCopy'
 alias open='exo-open '
 alias you-dl='youtube-dl -xi --yes-playlist --audio-format "wav" -o "%(title)s.%(ext)s"'
@@ -25,3 +26,5 @@ export PATH="$HOME/.gem/ruby/2.4.0/bin:$PATH"
 export PYTHONSTARTUP="$HOME/.pythonrc"
 export NODE_PATH='/home/gb/.npm-global/lib/node_modules'
 export TF_CPP_MIN_LOG_LEVEL=3
+
+export VISUAL="vim"

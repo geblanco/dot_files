@@ -1,3 +1,4 @@
 set pages-per-row 2
 set first-page-column 1
-
+set synctex-editor-command 'subl %{input}:%{line}'
+set selection-clipboard clipboard

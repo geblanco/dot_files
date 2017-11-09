@@ -31,13 +31,17 @@ Plugin 'https://github.com/vim-scripts/AutoComplPop'
 Plugin 'https://github.com/powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 " Better cpp highlight
 Plugin 'https://github.com/octol/vim-cpp-enhanced-highlight'
+" TeX Plugin
+Plugin 'https://github.com/lervag/vimtex.git'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
+
+set expandtab
+set shiftwidth=1
+set softtabstop=1
+filetype plugin indent on
+
 let g:ctrlp_map = '<F3>'
 map <F2> : NERDTreeToggle<CR>
 
@@ -55,13 +59,6 @@ set term=xterm-256color
 set termencoding=utf-8
 set guifont=Ubuntu\ Mono\ derivative\ Powerline:8
 let g:Powerline_symbols = 'fancy'
-
-" show existing tab with 2 spaces width
-set tabstop=2
-" when indenting with '>', use 2 spaces width
-set shiftwidth=2
-" On pressing tab, insert 4 spaces
-set expandtab
 
 set history=50    " keep 50 lines of command line history
 set ruler   " show the cursor position all the time
@@ -100,3 +97,12 @@ if has('langmap') && exists('+langnoremap')
   " compatible).
   set langnoremap
 endif
+
+let g:vimtex_view_method = 'zathura'
+map <F4> : VimtexTocOpen<CR>
+
+" more natural splits
+set splitbelow
+set splitright
+
+
