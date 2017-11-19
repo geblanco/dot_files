@@ -33,6 +33,8 @@ Plugin 'https://github.com/powerline/powerline', {'rtp': 'powerline/bindings/vim
 Plugin 'https://github.com/octol/vim-cpp-enhanced-highlight'
 " TeX Plugin
 Plugin 'https://github.com/lervag/vimtex.git'
+" Column increment
+" https://vim.sourceforge.io/scripts/script.php?script_id=670
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
