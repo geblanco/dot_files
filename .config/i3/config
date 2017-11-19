@@ -169,10 +169,11 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # File explorer shortcuts
-bindsym $mod+Shift+W exec thunar $HOME
-bindsym $mod+Shift+S exec thunar $HOME/Documents/Dev
-bindsym $mod+Shift+D exec thunar $HOME/Documents
-bindsym $mod+Shift+F exec thunar $HOME/Downloads
+bindsym $mod+Shift+W exec nautilus $HOME
+bindsym $mod+Shift+S exec nautilus $HOME/Documents/Dev
+bindsym $mod+Shift+D exec nautilus $HOME/Documents
+bindsym $mod+Shift+F exec nautilus $HOME/Downloads
+bindsym Control+Q exec xfce4-terminal --drop-down
 
 # sesion related
 # reload the configuration file
@@ -202,7 +203,7 @@ bar {
 # Setup
 # make mutant floating window
 for_window [class="Mutant" instance="mutant"] floating enable
-exec_always --no-startup-id /usr/bin/electron $HOME/Documents/Dev/mutant_new_router
+exec_always --no-startup-id mutant
 for_window [class="VirtualBox"] floating enable
 
 # Startup scripts
@@ -210,3 +211,6 @@ for_window [class="VirtualBox"] floating enable
 exec [[ $IS_DESKTOP -eq 1 ]] && /opt/scripts/ds -t
 # Background
 exec_always feh --bg-scale $BACKGROUND
+
+exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
+exec_always --no-startup-id gnome-power-manager

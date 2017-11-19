@@ -6,16 +6,16 @@
 # and /etc/lightdm/Xsession
 #
 
-if which dbus-launch >/dev/null && test -z "$DBUS_SESSION_BUS_ADDRESS"; then
-    eval "$(dbus-launch --sh-syntax --exit-with-session)"
-fi
+#if which dbus-launch >/dev/null && test -z "$DBUS_SESSION_BUS_ADDRESS"; then
+#    eval "$(dbus-launch --sh-syntax --exit-with-session)"
+#fi
 
 # Start some programs
-numlockx on &
+#numlockx on &
 
 # Environment variables
 #
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export IS_DESKTOP=1
-export BACKGROUND='/usr/share/backgrounds/wallpaper.png'
+export BACKGROUND='/usr/share/antergos/wallpapers/extinction_by_signcropstealer-d5j4y84.jpg'
 # export BACKGROUND='/usr/share/backgrounds/optics_greenopt.jpg'
