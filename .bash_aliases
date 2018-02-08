@@ -1,11 +1,18 @@
 alias subl='/opt/sublime_text/sublime_text'
 alias dev="cd ~/Documents/Dev/"
 alias master="cd ~/Documents/AIMaster/Curso/"
+alias drive="cd ~/Documents/Drive/"
 # done by script in bin
-#alias pbCopy='xclip -sel clip'
-#alias pbPaste='xclip -o -sel clip'
-alias getClip='xclip -o --sel | pbCopy'
-alias open='exo-open '
+# alias pbCopy='xclip -sel clip'
+# alias pbPaste='xclip -o -sel clip'
+# alias getClip='xclip -o --sel | pbcopy'
+exo='exo-open'
+hash exo-open 2>/dev/null
+if [[ $? -eq 1 ]]; then
+  exo='xdg-open'
+fi
+
+alias open='$exo '
 alias you-dl='youtube-dl -xi --yes-playlist --audio-format "wav" -o "%(title)s.%(ext)s"'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg --work-tree=$HOME'
 

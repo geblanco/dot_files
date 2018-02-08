@@ -1,4 +1,3 @@
-
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
@@ -13,7 +12,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-" Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 " Tree explorer
 Plugin 'https://github.com/scrooloose/nerdtree'
 " Nice fuzzy search
@@ -23,23 +22,36 @@ Plugin 'https://github.com/kien/ctrlp.vim'
 Plugin 'crusoexia/vim-monokai'
 " Better js indentation
 Plugin 'https://github.com/pangloss/vim-javascript'
-" Better js completions 
-Plugin 'crusoexia/vim-javascript-lib'
-" Autocompletion on tab
-Plugin 'https://github.com/vim-scripts/AutoComplPop'
 " Status line
 Plugin 'https://github.com/powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 " Better cpp highlight
 Plugin 'https://github.com/octol/vim-cpp-enhanced-highlight'
 " TeX Plugin
 Plugin 'https://github.com/lervag/vimtex.git'
+" Automatic Xkb Switch
+" Plugin 'https://github.com/lyokha/vim-xkbswitch.git'
+" Column increment
+" https://vim.sourceforge.io/scripts/script.php?script_id=670
+" dictionary completion
+Plugin 'https://github.com/rkulla/pydiction.git'
+" completion
+"Plugin 'https://github.com/maralla/completor.vim.git'
+" Better js completions 
+Plugin 'crusoexia/vim-javascript-lib'
+" Autocompletion on tab
+Plugin 'https://github.com/vim-scripts/AutoComplPop'
+"Plugin 'https://github.com/Shougo/deoplete.nvim.git'
+"Plugin 'https://github.com/roxma/nvim-yarp.git'
+"Plugin 'https://github.com/roxma/vim-hug-neovim-rpc.git'
+
+Plugin 'https://github.com/m0n0l0c0/vim-repl.git'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
 set expandtab
-set shiftwidth=1
-set softtabstop=1
+set shiftwidth=2
+set softtabstop=2
 filetype plugin indent on
 
 let g:ctrlp_map = '<F3>'
@@ -105,4 +117,12 @@ map <F4> : VimtexTocOpen<CR>
 set splitbelow
 set splitright
 
+" diction path
+let g:pydiction_location = '/home/gb/.vim/bundle/pydiction/complete-dict' 
+" completor jedi path
+let g:completor_python_binary = '/usr/lib/python2.7/site-packages/jedi/'
+
+let g:deoplete#enable_at_startup = 1
+
+let g:notebook_vim_tab = 1
 

@@ -34,10 +34,10 @@
 	font-2 = FontAwesome:pixelsize=12;1
 	font-4 = MaterialIcons:size=10;-1
 
-	modules-left = i3
+	modules-left = i3 player-mpris-tail
 	modules-right = volume keyboard gmail pkg separator cpu memory separator date powermenu
 
-	tray-position = right
+	tray-position = center
 	tray-padding = 2
 
 	tray-transparent = false
@@ -83,6 +83,14 @@
 	label-urgent-background = #bd2c40
 	label-urgent-underline = #9b0a20
 	label-urgent-padding = 2
+
+[module/player-mpris-tail]
+    type = custom/script
+    exec = ~/.config/polybar/player-mpris-tail/player-mpris-tail.py
+    tail = true
+    click-left = playerctl previous
+    click-right = playerctl next
+    click-middle = playerctl play-pause
 
 [module/volume]
 	type = internal/volume
