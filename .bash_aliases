@@ -5,7 +5,7 @@ alias drive="cd ~/Documents/Drive/"
 # done by script in bin
 # alias pbCopy='xclip -sel clip'
 # alias pbPaste='xclip -o -sel clip'
-# alias getClip='xclip -o --sel | pbcopy'
+alias getclip='xclip -o --sel | pbcopy'
 exo='exo-open'
 hash exo-open 2>/dev/null
 if [[ $? -eq 1 ]]; then
