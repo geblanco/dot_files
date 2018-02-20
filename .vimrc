@@ -124,5 +124,5 @@ let g:completor_python_binary = '/usr/lib/python2.7/site-packages/jedi/'
 
 let g:deoplete#enable_at_startup = 1
 
-let g:notebook_vim_tab = 1
-
+let g:repl_ipython = 1
+let g:repl_vertical = 1

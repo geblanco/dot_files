@@ -35,7 +35,7 @@
 	font-4 = MaterialIcons:size=10;-1
 
 	modules-left = i3 player-mpris-tail
-	modules-right = volume keyboard gmail pkg separator cpu memory separator date powermenu
+	modules-right = volume keyboard gmail pkg separator cpu memory separator battery separator date powermenu
 
 	tray-position = center
 	tray-padding = 2
@@ -166,6 +166,47 @@
 	format = <label>
 	label-font = 2
 	label = RAM %{F#99} %percentage_used%% %{F-}
+
+[module/battery]
+  type = internal/battery
+
+  ; This is useful in case the battery never reports 100% charge
+  full-at = 99
+
+  ; Use the following command to list batteries and adapters:
+  ; $ ls -1 /sys/class/power_supply/
+  battery = BAT0
+  adapter = AC
+
+  ; If an inotify event haven't been reported in this many
+  ; seconds, manually poll for new values.
+  ;
+  ; Needed as a fallback for systems that don't report events
+  ; on sysfs/procfs.
+  ;
+  ; Disable polling by setting the interval to 0.
+  ;
+  ; Default: 5
+  poll-interval = 5
+  format-charging = <animation-charging> <label-charging>
+  label-charging = %{F#32CD32} %percentage%% %{F-}
+
+  animation-charging-0 = 
+  animation-charging-1 = 
+  animation-charging-2 = 
+  animation-charging-3 = 
+  animation-charging-4 = 
+  ; Framerate in milliseconds
+  animation-charging-framerate = 750
+
+  format-discharging = <ramp-capacity> <label-discharging>
+  label-discharging = %{F#99} %percentage%% %{F-}
+
+  ramp-capacity-0 = 
+  ramp-capacity-1 = 
+  ramp-capacity-2 = 
+  ramp-capacity-3 = 
+  ramp-capacity-4 = 
 
 [module/date]
 	type = internal/date

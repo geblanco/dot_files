@@ -17,5 +17,5 @@ numlockx on &
 #
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export IS_DESKTOP=1
-export BACKGROUND='/usr/share/backgrounds/wallpaper.png'
-# export BACKGROUND='/usr/share/backgrounds/optics_greenopt.jpg'
+export BACKGROUND=''
+# export BACKGROUND='/usr/share/antergos/wallpapers/extinction_by_signcropstealer-d5j4y84.jpg'
