@@ -64,6 +64,8 @@ set number
 
 nnoremap <C-Right> gT
 nnoremap <C-Left> gT
+" split lines, like J to join
+nnoremap K i<CR><Esc>
 
 " powerline settings
 set laststatus=2
