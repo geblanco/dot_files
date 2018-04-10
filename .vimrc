@@ -66,6 +66,7 @@ nnoremap <C-Right> gT
 nnoremap <C-Left> gT
 " split lines, like J to join
 nnoremap K i<CR><Esc>
+nnoremap <C-W>t :vertical term <CR>
 
 " powerline settings
 set laststatus=2

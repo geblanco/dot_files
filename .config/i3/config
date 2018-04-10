@@ -222,7 +222,7 @@ for_window [class="VirtualBox"] floating enable
 # Display
 exec [[ $IS_DESKTOP -eq 1 ]] && /opt/scripts/ds -t
 # Background
-exec_always feh --bg-scale $BACKGROUND
+exec_always feh --randomize --bg-scale /usr/share/backgrounds/liked/*
 
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 exec_always --no-startup-id gnome-power-manager
