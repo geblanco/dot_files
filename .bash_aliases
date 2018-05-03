@@ -30,8 +30,20 @@ export PATH="$HOME/.gem/ruby/2.4.0/bin:$PATH"
 # Servers config
 [[ -f $HOME/.config/servers ]] && source $HOME/.config/servers
 
+# gtd config
+[[ -f $HOME/.gtd_aliases ]] && source $HOME/.gtd_aliases 
+
 export PYTHONSTARTUP="$HOME/.pythonrc"
 export NODE_PATH='/home/gb/.npm-global/lib/node_modules'
 export TF_CPP_MIN_LOG_LEVEL=3
 
 export VISUAL="vim"
+
+send_file() {
+  local file=$1; shift
+  local msg="send_file Guillermo $file"
+  telegram-cli --exec $msg --disable-output
+}
+
+alias backup=send_file
+
