@@ -17,6 +17,8 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'https://github.com/scrooloose/nerdtree'
 " Nice fuzzy search
 Plugin 'https://github.com/kien/ctrlp.vim'
+" Auto closing braces, parens..., like sublime text
+Plugin 'https://github.com/Raimondi/delimitMate.git'
 " Provides Monokai
 " Plugin 'https://github.com/flazz/vim-colorschemes'
 Plugin 'crusoexia/vim-monokai'
@@ -53,6 +55,9 @@ set expandtab
 set shiftwidth=2
 set softtabstop=2
 filetype plugin indent on
+
+" overwrite default
+autocmd FileType python setlocal expandtab shiftwidth=2 tabstop=2
 
 let g:ctrlp_map = '<F3>'
 map <F2> : NERDTreeToggle<CR>
