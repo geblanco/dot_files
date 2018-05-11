@@ -1,0 +1,47 @@
+#!/bin/bash
+
+_tickle () {
+  local deadline=$1; shift
+  in +tickle wait:$deadline $@
+}
+
+_webpage_title (){
+  wget -qO- "$*" | hxselect -s '\n' -c  'title' 2>/dev/null
+}
+
+_read_and_review (){
+  local link="$1"
+  local title=$(_webpage_title $link)
+  echo $title
+  local descr="\"Read and review: $title\""
+  local id=$(task add +next +rnr "$descr" | sed -n 's/Created task \(.*\)./\1/p')
+  task "$id" annotate "$link"
+}
+
+_gtd_summary () {
+  local usage="
+==== Getting Things Done summary ====
+
+  Avaliable commands:
+
+  Name      Arguments   Description
+  ====================================================================
+  task in               Prints a short report of the current inbox.
+  amnt                  Gets the amount of pending tasks in the inbox.
+  in        task        Adds a task to the inbox (+in tag).
+  tick      date, task  Adds a tickle item (delayed until <date>).
+  think     task        Delays the given task by one day.
+  rnr       url         Adds a read and review task pointing to a url
+                        (requires html-xml-utils).
+
+  To add a new task type 'task add <task> es:<estimate> brain:<L,M,H> [pro:<project>, @work|@home]'
+"
+  echo $usage
+}
+
+alias in="task add +in"
+alias amnt="task +in +PENDING count"
+alias tick=_tickle
+alias think='tickle +1d'
+alias rnr=_read_and_review
+alias gtd=_gtd_summary

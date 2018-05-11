@@ -24,14 +24,16 @@ export XZ_OPT=-9
 export PATH=/opt/scripts/:$PATH
 # npm global path (fix permissions)
 export PATH="$HOME/.npm-global/bin:$PATH"
-# ruby gems global path
-export PATH="$HOME/.gem/ruby/2.4.0/bin:$PATH"
 
 # Servers config
-[[ -f $HOME/.config/servers ]] && source $HOME/.config/servers
+if [[ -f ~/.config/servers ]]; then
+  source ~/.config/servers
+fi
 
 # gtd config
-[[ -f $HOME/.gtd_aliases ]] && source $HOME/.gtd_aliases 
+if [[ -f $HOME/.gtd_aliases ]]; then
+  source $HOME/.gtd_aliases
+fi
 
 export PYTHONSTARTUP="$HOME/.pythonrc"
 export NODE_PATH='/home/gb/.npm-global/lib/node_modules'

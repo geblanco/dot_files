@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/usr/share/oh-my-zsh 
+export ZSH=$HOME/.oh-my-zsh 
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -87,28 +87,6 @@ source $ZSH/oh-my-zsh.sh
 
 if [[ -f $HOME/.bash_aliases ]]; then
 	source $HOME/.bash_aliases
-fi
-
-# Servers config
-if [[ -f ~/.config/servers ]]; then
-  source ~/.config/servers
-fi
-
-function powerline_precmd() {
-  PS1="$(/home/gb/Documents/Dev/powerline-shell/start.py --shell zsh $?)"$'\n'"$(/home/gb/Documents/Dev/powerline-shell/powerline-shell.py --shell zsh)"
-}
-
-function install_powerline_precmd() {
-  for s in "${precmd_functions[@]}"; do
-    if [ "$s" = "powerline_precmd" ]; then
-      return
-    fi
-  done
-  precmd_functions+=(powerline_precmd)
-}
-
-if [ "$TERM" != "linux" ]; then
-#    install_powerline_precmd
 fi
 
 stty -ixon
