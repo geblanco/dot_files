@@ -15,8 +15,8 @@ set $KP_8 80
 set $KP_9 81
 set $KP_0 90
 # monitors
-set $mon1 "DVI-D-0"
-set $mon2 "VGA-0"
+set $mon1 "eDP-1"
+set $mon2 "DP-1"
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -236,5 +236,5 @@ exec [[ $IS_DESKTOP -eq 1 ]] && /opt/scripts/ds -t
 # Background
 exec_always feh --randomize --bg-scale /usr/share/backgrounds/liked/*
 
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
-exec_always --no-startup-id gnome-power-manager
+# exec --no-startup-id /usr/lib/gsd-xsettings
+# exec_always --no-startup-id gnome-power-manager
