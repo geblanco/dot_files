@@ -42,9 +42,11 @@ export TF_CPP_MIN_LOG_LEVEL=3
 export VISUAL="vim"
 
 send_file() {
-  local file=$1; shift
-  local msg="send_file Guillermo $file"
-  telegram-cli --exec $msg --disable-output
+  local msg=""
+  for file in $@; do
+    msg="send_file Guillermo $file"
+    telegram-cli --exec $msg --disable-output
+  done
 }
 
 alias backup=send_file
