@@ -34,7 +34,7 @@ _gtd_summary () {
   rnr       url         Adds a read and review task pointing to a url
                         (requires html-xml-utils).
 
-  To add a new task type 'task add <task> es:<estimate> brain:<L,M,H> [pro:<project>, @work|@home]'
+    To add a new task type 'task add <task> es:<estimate> brain:<L,M,H> [pro:<project>, +(@work|@home)]'
 "
   echo $usage
 }
