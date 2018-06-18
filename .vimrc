@@ -17,7 +17,7 @@ Plugin 'gmarik/Vundle.vim'
 
 """" Utility plugins
 Plugin 'scrooloose/nerdtree'      " Tree explorer
-Plugin 'ctrlpvim/ctrlp.vim'       " Nice fuzzy search
+Plugin 'https://github.com/ctrlpvim/ctrlp.vim'       " Nice fuzzy search
 Plugin 'Raimondi/delimitMate.git' " Auto closing braces, parens..., like sublime text
 Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/fzf'
