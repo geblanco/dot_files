@@ -3,7 +3,7 @@
 """""""""""""""""""""""""""""""""""""""
 set nocompatible
 syntax on
-set nowrap
+set wrap
 set encoding=utf8
 
 """ Start Vundle configuration
