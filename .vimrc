@@ -203,9 +203,9 @@ nnoremap <C-Left> gT
 """ split lines, like J to join
 nnoremap K i<CR><Esc>
 """ mpris play, pause, next, prev song
-nnoremap <leader>ss :!playerctl play-pause <CR> <CR>
-nnoremap <leader>ns :!playerctl next <CR> <CR>
-nnoremap <leader>ps :!playerctl previous <CR> <CR>
+nnoremap <leader>ps :!playerctl play-pause <CR> <CR>
+nnoremap <leader>>s :!playerctl next <CR> <CR>
+nnoremap <leader><s :!playerctl previous <CR> <CR>
 """ nice vertical terminal (defaults to horizontal split)
 nnoremap <C-W>t :vertical term <CR>
 " Shortcuts
