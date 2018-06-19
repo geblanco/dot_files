@@ -202,12 +202,16 @@ nnoremap <C-Right> gT
 nnoremap <C-Left> gT
 """ split lines, like J to join
 nnoremap K i<CR><Esc>
+""" mpris play, pause, next, prev song
+nnoremap <leader>ss :!playerctl play-pause <CR> <CR>
+nnoremap <leader>ns :!playerctl next <CR> <CR>
+nnoremap <leader>ps :!playerctl previous <CR> <CR>
 """ nice vertical terminal (defaults to horizontal split)
 nnoremap <C-W>t :vertical term <CR>
 " Shortcuts
-nnoremap <Leader>o :Files<CR>
-nnoremap <Leader>O :CtrlP<CR>
-nnoremap <Leader>w :w<CR>
+nnoremap <leader>o :Files<CR>
+nnoremap <leader>O :CtrlP<CR>
+nnoremap <leader>w :w<CR>
 """" ToDo := Test this out
 " Mapping selecting Mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
