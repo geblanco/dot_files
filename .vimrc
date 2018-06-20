@@ -122,6 +122,8 @@ let g:Powerline_symbols = 'fancy'
 let g:ctrlp_map = '<F3>'
 """ latex
 let g:vimtex_view_method = 'zathura'
+" autoresize main tex window, too much log window from vimtex
+autocmd VimResized *.tex exe 'resize ' . float2nr((&lines -1) * 0.8)
 """ diction path
 let g:pydiction_location = '/home/gb/.vim/bundle/pydiction/complete-dict' 
 """ completor jedi path
@@ -235,3 +237,4 @@ if get(g:, 'elite_mode')
   nnoremap <Left>  :vertical resize -2<CR>
   nnoremap <Right> :vertical resize +2<CR>
 endif
+
