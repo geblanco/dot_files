@@ -16,15 +16,17 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 """" Utility plugins
-Plugin 'scrooloose/nerdtree'      " Tree explorer
-Plugin 'https://github.com/ctrlpvim/ctrlp.vim'       " Nice fuzzy search
-Plugin 'Raimondi/delimitMate.git' " Auto closing braces, parens..., like sublime text
+Plugin 'scrooloose/nerdtree'                                     " Tree explorer
+Plugin 'https://github.com/ctrlpvim/ctrlp.vim'                   " Nice fuzzy search
+Plugin 'Raimondi/delimitMate.git'                                " Auto closing braces, parens..., like sublime text
 Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/fzf'
 Plugin 'godlygeek/tabular'
-Plugin 'SirVer/ultisnips'         " Snippets engine, NEEDS Deoplete for menus
-Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'} " Status line 
-Plugin 'chaoren/vim-wordmotion'   " Move in camelCase and snake_oil motions
+Plugin 'SirVer/ultisnips'                                        " Snippets engine, NEEDS Deoplete for menus
+Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'} " Status line
+Plugin 'chaoren/vim-wordmotion'                                  " Move in camelCase and snake_oil motions
+Plugin 'junegunn/limelight.vim'                                  " Focused writting
+Plugin 'ludovicchabant/vim-gutentags'                            " Automatic, powerful tags
 " Plugin 'ervandew/supertab'
 """ Programming utilities
 Plugin 'honza/vim-snippets'       " Snippets are separated from the engine
@@ -185,8 +187,9 @@ set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
+let g:syntastic_loc_list_height=4
 """ Ctags
-let g:vim_tags_auto_generate  = 0
+let g:vim_tags_auto_generate  = 1
 """""""""""""""""""""""""""""""""""""""
 " Appearance
 """""""""""""""""""""""""""""""""""""""
@@ -232,4 +235,3 @@ if get(g:, 'elite_mode')
   nnoremap <Left>  :vertical resize -2<CR>
   nnoremap <Right> :vertical resize +2<CR>
 endif
-
