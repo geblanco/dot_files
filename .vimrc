@@ -124,6 +124,8 @@ let g:ctrlp_map = '<F3>'
 let g:vimtex_view_method = 'zathura'
 " autoresize main tex window, too much log window from vimtex
 autocmd VimResized *.tex exe 'resize ' . float2nr((&lines -1) * 0.8)
+""" gutentags
+let g:gutentags_cache_dir = $HOME .'/.cache/guten_tags'
 """ diction path
 let g:pydiction_location = '/home/gb/.vim/bundle/pydiction/complete-dict' 
 """ completor jedi path
@@ -196,7 +198,10 @@ let g:vim_tags_auto_generate  = 1
 " Appearance
 """""""""""""""""""""""""""""""""""""""
 colorscheme monokai
-
+""" Player function
+function! Player(cmd)
+  execute 'silent !playerctl ' . a:cmd | execute 'redraw!'
+endfunction
 """""""""""""""""""""""""""""""""""""""
 " Keyboard maps
 """""""""""""""""""""""""""""""""""""""
@@ -208,9 +213,9 @@ nnoremap <C-Left> gT
 """ split lines, like J to join
 nnoremap K i<CR><Esc>
 """ mpris play, pause, next, prev song
-nnoremap <leader>ps :!playerctl play-pause <CR> <CR>
-nnoremap <leader>>s :!playerctl next <CR> <CR>
-nnoremap <leader><s :!playerctl previous <CR> <CR>
+nnoremap <leader>ps :call Player('play-pause') <CR>
+nnoremap <leader>>s :call Player('next') <CR>
+nnoremap <leader><s :call Player('previous') <CR>
 """ nice vertical terminal (defaults to horizontal split)
 nnoremap <C-W>t :vertical term <CR>
 " Shortcuts
