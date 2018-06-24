@@ -22,15 +22,18 @@ Plugin 'Raimondi/delimitMate.git'                                " Auto closing 
 Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/fzf'
 Plugin 'godlygeek/tabular'
-Plugin 'SirVer/ultisnips'                                        " Snippets engine, NEEDS Deoplete for menus
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'} " Status line
 Plugin 'chaoren/vim-wordmotion'                                  " Move in camelCase and snake_oil motions
 Plugin 'junegunn/limelight.vim'                                  " Focused writting
-Plugin 'ludovicchabant/vim-gutentags'                            " Automatic, powerful tags
+" Plugin 'SirVer/ultisnips'                                        " Snippets engine, NEEDS Deoplete for menus
+" Plugin 'ludovicchabant/vim-gutentags'                            " Automatic, powerful tags
 " Plugin 'ervandew/supertab'
+""" Project management
+Plugin 'https://github.com/vimwiki/vimwiki'
+Plugin 'https://github.com/tbabej/taskwiki'
 """ Programming utilities
-Plugin 'honza/vim-snippets'       " Snippets are separated from the engine
-Plugin 'szw/vim-tags'
+" Plugin 'honza/vim-snippets'       " Snippets are separated from the engine
+" Plugin 'szw/vim-tags'
 Plugin 'majutsushi/tagbar'
 """" Themes and appearance
 Plugin 'crusoexia/vim-monokai'    " Provides Monokai
@@ -125,7 +128,8 @@ let g:vimtex_view_method = 'zathura'
 " autoresize main tex window, too much log window from vimtex
 autocmd VimResized *.tex exe 'resize ' . float2nr((&lines -1) * 0.8)
 """ gutentags
-let g:gutentags_cache_dir = $HOME .'/.cache/guten_tags'
+"let g:gutentags_cache_dir = $HOME .'/.cache/guten_tags'
+let g:gutentags_ctags_exclude = ['*.session.vim']
 """ diction path
 let g:pydiction_location = '/home/gb/.vim/bundle/pydiction/complete-dict' 
 """ completor jedi path
@@ -188,12 +192,12 @@ endfunction
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_loc_list_height=4
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_loc_list_height=2
 """ Ctags
-let g:vim_tags_auto_generate  = 1
+let g:vim_tags_auto_generate  = 0
 """""""""""""""""""""""""""""""""""""""
 " Appearance
 """""""""""""""""""""""""""""""""""""""
