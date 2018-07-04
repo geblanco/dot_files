@@ -25,6 +25,8 @@ Plugin 'godlygeek/tabular'
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'} " Status line
 Plugin 'chaoren/vim-wordmotion'                                  " Move in camelCase and snake_oil motions
 Plugin 'junegunn/limelight.vim'                                  " Focused writting
+Plugin 'junegunn/goyo.vim'                                       " Focused writting
+Plugin 'bilalq/lite-dfm'                                       " Focused writting
 " Plugin 'SirVer/ultisnips'                                        " Snippets engine, NEEDS Deoplete for menus
 " Plugin 'ludovicchabant/vim-gutentags'                            " Automatic, powerful tags
 " Plugin 'ervandew/supertab'
@@ -199,12 +201,18 @@ let g:syntastic_loc_list_height=2
 """ Ctags
 let g:vim_tags_auto_generate  = 0
 """""""""""""""""""""""""""""""""""""""
-" Appearance
+" Appearance & Misc
 """""""""""""""""""""""""""""""""""""""
 colorscheme monokai
 """ Player function
 function! Player(cmd)
   execute 'silent !playerctl ' . a:cmd | execute 'redraw!'
+endfunction
+" ALWAYS highlight todos
+autocmd VimEnter,WinEnter * call TodoSyntax()
+function TodoSyntax()
+  syn match mTodo "\c\s*todo\s*\([:=]\{1,2}\)\?\s*" containedin=ALL
+  hi def link mTodo Todo
 endfunction
 """""""""""""""""""""""""""""""""""""""
 " Keyboard maps
@@ -226,7 +234,7 @@ nnoremap <C-W>t :vertical term <CR>
 nnoremap <leader>o :Files<CR>
 nnoremap <leader>O :CtrlP<CR>
 nnoremap <leader>w :w<CR>
-"""" ToDo := Test this out
+"""" ToDo:= Test this out
 " Mapping selecting Mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
