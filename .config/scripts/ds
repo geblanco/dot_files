@@ -1,0 +1,93 @@
+#!/bin/bash
+
+function baseOff {
+	xrandr --output VIRTUAL1 --off --output VGA1 --off
+}
+
+function reset {
+	xrandr --output HDMI2 --mode 1920x1080 --right-of VGA1 --pos 1280x0 --rotate normal
+	xrandr --output HDMI1 --mode 1920x1080 --right-of HDMI2 --pos 3200x0 --rotate normal
+}
+
+function oneDisplay {
+	xrandr --output HDMI1 --off 
+	xrandr --output HDMI2 --primary --mode 1920x1080 --rotate normal
+}
+
+function twoDisplay {
+	xrandr --output HDMI2 --primary --mode 1920x1080 --rotate normal
+	xrandr --output HDMI1 --mode 1920x1080 --right-of HDMI2 --rotate normal
+}
+
+function inverted {
+	xrandr --output HDMI2 --primary --mode 1920x1080 --pos 0x480 --rotate normal
+	xrandr --output HDMI1 --mode 1920x1080 --pos 1920x0 --rotate right 
+}
+
+function usage {
+	echo "Usage: ds [OPTS]
+
+OPTS:
+  -o | -one   | --one 	One display, center
+  -t | -two   | --two 	Two displays, center and right
+  -i | --inverted	Rotate right screen 	
+  -r | -reset | --reset Three displays, left, center and right
+  -h | -help  | --help  Display this dialog
+"
+}
+
+if [[ $# -eq 0 ]]; then
+	usage
+	exit 0;
+fi
+
+functions=()
+functions[1]="oneDisplay"
+functions[2]="twoDisplay"
+functions[3]="inverted"
+functions[4]="reset"
+
+func=5
+for i in "$@"
+do
+	case $i in
+		-o | -one | --one )
+		echo "oneDisplay" 
+			func=1
+			shift
+			;;
+		-t | -two | --two )
+		echo "twoDisplay" 
+			func=2
+			shift
+			;;
+		-i | --inverted )
+			func=3
+			shift
+			;;
+		-r | -reset | --reset )
+		echo "reset" 
+			func=4
+			shift
+			;;
+		-h | -help | --help )
+		echo "reset" 
+			usage
+			shift
+			;;
+		*)
+			shift
+			;;
+	esac
+done
+
+if [[ $func -gt 0 && $func -lt 5 ]]; then
+	baseOff
+	${functions[$func]}
+	$HOME/.config/polybar/launch.sh &
+fi
+
+# Setup background
+feh --bg-scale $BACKGROUND
+
+
