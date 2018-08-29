@@ -1,7 +1,5 @@
 alias subl='/opt/sublime_text/sublime_text'
 alias dev="cd ~/Documents/Dev/"
-alias master="cd ~/Documents/AIMaster/Curso/"
-alias drive="cd ~/Documents/Drive/"
 # done by script in bin
 # alias pbCopy='xclip -sel clip'
 # alias pbPaste='xclip -o -sel clip'
@@ -24,6 +22,8 @@ export XZ_OPT=-9
 export PATH=/opt/scripts/:$PATH
 # npm global path (fix permissions)
 export PATH="$HOME/.npm-global/bin:$PATH"
+# ruby gems
+export PATH="/home/gb/.gem/ruby/2.5.0/bin:$PATH"
 
 # Servers config
 if [[ -f ~/.config/servers ]]; then
@@ -50,4 +50,24 @@ send_file() {
 }
 
 alias backup=send_file
+
+_enter_python() {
+  local arg=$1;
+  local cwd=$(pwd)
+  local cmd="cd $cwd"
+  cd $HOME/Documents/Dev/python_data_science/
+  if [[ "$arg" == "ipython" ]]; then
+    cmd+=" && ipython"
+  fi
+  echo "$arg $cmd"
+  pipenv shell "$cmd"; cd $cwd
+}
+
+env_ipython() {
+  _enter_python "ipython"
+}
+
+env_shell() {
+  _enter_python "shell"
+}
 
