@@ -31,4 +31,6 @@ ColorPalette=#2E3436;#CC0000;#4E9A06;#C4A000;#3465A4;#75507B;#06989A;#D3D7CF;#55
 FontName=Monospace 10
 TabActivityColor=#a6a6e2e22e2e
 MiscNewTabAdjacent=FALSE
+MiscShowRelaunchDialog=TRUE
+Encoding=UTF-8
 
