@@ -232,7 +232,9 @@ for_window [class="VirtualBox"] floating enable
 
 # Startup scripts
 # Display
-exec [[ $IS_DESKTOP -eq 1 ]] && /opt/scripts/ds -t
+# exec [[ $IS_DESKTOP -eq 1 ]] && /opt/scripts/ds -t
+# touchpad setting while typing
+# exec syndaemon -i 0.2 -R -K -d
 # Background
 exec_always feh --randomize --bg-scale /usr/share/backgrounds/liked/*
 

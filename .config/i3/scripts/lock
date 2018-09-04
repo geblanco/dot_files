@@ -30,6 +30,7 @@ BLURTYPE="5x8" # 2.90s
 # Get the screenshot, add the blur and lock the screen with it
 $SCREENSHOT
 convert $IMAGE -blur $BLURTYPE $IMAGE
-i3lock -i $IMAGE
+i3lock -i $IMAGE 
+# && (sleep 600; [[ $(pgrep i3lock | wc -l) -gt 0 ]] && systemctl suspend)
 rm $IMAGE
 exit 0
