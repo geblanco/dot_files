@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 lock() {
-    nohup $HOME/.config/i3/lock.sh >/dev/null 2>&1
+    nohup $HOME/.config/i3/scripts/lock >/dev/null 2>&1
 }
 
 case "$1" in

@@ -1,0 +1,4 @@
+log/*
+gmail/client_secrets.json
+gmail/credentials.json
+polybar-scripts/*
