@@ -54,8 +54,7 @@ alias backup=send_file
 _enter_python() {
   local arg=$1;
   local cwd=$(pwd)
-  local cmd='export PROMPT=$(get_left_prompt)'
-  cmd+="&& cd $cwd"
+  local cmd="cd $cwd"
   cd $HOME/Documents/Dev/python_data_science/
   if [[ "$arg" == "ipython" ]]; then
     cmd+=" && ipython"
