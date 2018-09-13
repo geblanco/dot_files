@@ -87,7 +87,7 @@ set directory=~/.vim/swap//
 set backupdir=~/.vim/backup//
 
 " overwrite default
-autocmd FileType python setlocal expandtab shiftwidth=2 tabstop=2
+autocmd FileType python setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -200,6 +200,8 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_loc_list_height=2
 """ Ctags
 let g:vim_tags_auto_generate  = 0
+""" vimwiki
+let g:taskwiki_use_python2 = 1
 """""""""""""""""""""""""""""""""""""""
 " Appearance & Misc
 """""""""""""""""""""""""""""""""""""""
