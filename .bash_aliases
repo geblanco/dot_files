@@ -1,5 +1,6 @@
 alias subl='/opt/sublime_text/sublime_text'
 alias dev="cd ~/Documents/Dev/"
+alias res="cd ~/Documents/Research/"
 # done by script in bin
 # alias pbCopy='xclip -sel clip'
 # alias pbPaste='xclip -o -sel clip'
@@ -52,10 +53,14 @@ send_file() {
 alias backup=send_file
 
 _enter_python() {
-  local arg=$1;
+  local arg=$1; shift
   local cwd=$(pwd)
   local cmd="cd $cwd"
-  cd $HOME/Documents/Dev/python_data_science/
+  work_dir="$HOME/Documents/Dev/python_data_science/"
+  if [[ $# -gt 0 ]]; then
+    work_dir=$1
+  fi
+  cd $work_dir
   if [[ "$arg" == "ipython" ]]; then
     cmd+=" && ipython"
   fi
@@ -63,10 +68,17 @@ _enter_python() {
 }
 
 env_ipython() {
-  _enter_python "ipython"
+  _enter_python "ipython" $@
 }
 
 env_shell() {
-  _enter_python "shell"
+  _enter_python "shell" $@
 }
+
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+  ssh-agent > ~/.config/ssh-agent-data
+else
+  export SSH_AGENT_PID=$(pgrep -u "$USER" -ao ssh-agent | cut -f 1 -d ' ')
+  export SSH_AUTH_SOCK="$(pgrep -u "$USER" -ao ssh-agent | awk '{print $(NF)}')"
+fi
 
