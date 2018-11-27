@@ -79,6 +79,6 @@ if ! pgrep -u "$USER" ssh-agent > /dev/null; then
   ssh-agent > ~/.config/ssh-agent-data
 else
   export SSH_AGENT_PID=$(pgrep -u "$USER" -ao ssh-agent | cut -f 1 -d ' ')
-  export SSH_AUTH_SOCK=""$(pgrep -u "$USER" -ao ssh-agent | awk '{print $(NF)}')"
+  export SSH_AUTH_SOCK=$(pgrep -u "$USER" -ao ssh-agent | awk '{print $(NF)}')
 fi
 
