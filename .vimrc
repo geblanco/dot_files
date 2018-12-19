@@ -141,6 +141,8 @@ let g:deoplete#enable_at_startup = 1
 """ repl
 let g:repl_ipython = 1
 let g:repl_vertical = 1
+""" distraction free
+let g:lite_dfm_left_offset = 10
 """ Util Snippets
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
