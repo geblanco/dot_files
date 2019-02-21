@@ -86,13 +86,16 @@ set undodir=~/.vim/undo//
 set directory=~/.vim/swap//
 set backupdir=~/.vim/backup//
 
-" overwrite default
-autocmd FileType python setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2 textwidth=79
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+" autocmd always on augroup to avoid re-stacking the command when sourcing vimrc
+augroup fileTypesSetup
+  " overwrite default
+  autocmd FileType python setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2 textwidth=79
+  " Enable omni completion.
+  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+augroup END
 
 if has("vms")
   set nobackup    " do not keep a backup file, use versions instead
@@ -128,7 +131,9 @@ let g:ctrlp_map = '<F3>'
 """ latex
 let g:vimtex_view_method = 'zathura'
 " autoresize main tex window, too much log window from vimtex
-autocmd VimResized *.tex exe 'resize ' . float2nr((&lines -1) * 0.8)
+augroup resizeTex
+  autocmd VimResized *.tex exe 'resize ' . float2nr((&lines -1) * 0.8)
+augroup END
 """ gutentags
 "let g:gutentags_cache_dir = $HOME .'/.cache/guten_tags'
 let g:gutentags_ctags_exclude = ['*.session.vim']
@@ -212,8 +217,10 @@ colorscheme monokai
 function! Player(cmd)
   execute 'silent !playerctl ' . a:cmd | execute 'redraw!'
 endfunction
-" ALWAYS highlight todos
-autocmd VimEnter,WinEnter * call TodoSyntax()
+augroup todoSetup
+  " ALWAYS highlight todos
+  autocmd VimEnter,WinEnter * call TodoSyntax()
+augroup END
 function TodoSyntax()
   syn match mTodo "\c\s*todo\s*\([:=]\{1,2}\)\?\s*" containedin=ALL
   hi def link mTodo Todo
