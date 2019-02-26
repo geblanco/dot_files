@@ -19,8 +19,8 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/nerdtree'                                     " Tree explorer
 Plugin 'https://github.com/ctrlpvim/ctrlp.vim'                   " Nice fuzzy search
 Plugin 'Raimondi/delimitMate.git'                                " Auto closing braces, parens..., like sublime text
-Plugin 'junegunn/fzf.vim'
-Plugin 'junegunn/fzf'
+" Plugin 'junegunn/fzf.vim'                                        " Fuzzy search across files & more
+" Plugin 'junegunn/fzf'                                            " Fuzzy search binary
 Plugin 'godlygeek/tabular'
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'} " Status line
 Plugin 'chaoren/vim-wordmotion'                                  " Move in camelCase and snake_oil motions
@@ -246,20 +246,21 @@ nnoremap <leader><s :call Player('previous') <CR>
 """ nice vertical terminal (defaults to horizontal split)
 nnoremap <C-W>t :vertical term <CR>
 " Shortcuts
-nnoremap <leader>o :Files<CR>
-nnoremap <leader>O :CtrlP<CR>
+nnoremap <leader>o :CtrlP<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>df :call DFMode() <CR>
 """" ToDo:= Test this out
+" Fzf Shortcuts
+" nnoremap <leader>o :Files<CR>
 " Mapping selecting Mappings
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
+" nmap <leader><tab> <plug>(fzf-maps-n)
+" xmap <leader><tab> <plug>(fzf-maps-x)
+" omap <leader><tab> <plug>(fzf-maps-o)
 " Insert mode completion
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
+" imap <c-x><c-k> <plug>(fzf-complete-word)
+" imap <c-x><c-f> <plug>(fzf-complete-path)
+" imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+" imap <c-x><c-l> <plug>(fzf-complete-line)
 
 "" Enable Elite mode, no arrows
 let g:elite_mode=1
