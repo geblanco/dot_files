@@ -1,6 +1,6 @@
 #!/bin/bash
 pac=$(pacman -Qu 2> /dev/null | grep -v '\[.*\]' | wc -l)
-aur=$(cower -u | wc -l)
+aur=$(cower -u 2>/dev/null | wc -l)
 check=0
 pac_text="?"
 

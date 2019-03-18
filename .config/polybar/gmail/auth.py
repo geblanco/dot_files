@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 
 import os
 import pathlib
@@ -21,7 +21,8 @@ else:
     flow = client.flow_from_clientsecrets(CLIENT_SECRETS_PATH, scope=SCOPE,
                                                                redirect_uri=REDIRECT_URI)
     auth_uri = flow.step1_get_authorize_url()
-    webbrowser.open(auth_uri)
+    webbrowser.get('firefox %s').open(auth_uri)
+    # webbrowser.open(auth_uri)
     auth_code = input('Enter the auth code: ')
     credentials = flow.step2_exchange(auth_code)
     storage.put(credentials)
