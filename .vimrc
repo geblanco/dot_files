@@ -212,6 +212,15 @@ let g:taskwiki_use_python2 = 1
 " Appearance & Misc
 """""""""""""""""""""""""""""""""""""""
 colorscheme monokai
+""" Spell colors, no eye bloodbleeding please
+hi SpellBad none
+hi SpellCap none
+hi SpellRare none
+hi SpellLocal none
+hi SpellBad term=bold ctermfg=197 guifg=#F92772
+hi SpellCap term=bold ctermfg=12 gui=undercurl guisp=Blue
+hi SpellRare term=bold ctermfg=13 gui=undercurl guisp=Magenta
+hi SpellLocal term=bold ctermfg=14 gui=undercurl guisp=Cyan
 """ Player function
 function! Player(cmd)
   execute 'silent !playerctl ' . a:cmd | execute 'redraw!'
@@ -271,6 +280,4 @@ if get(g:, 'elite_mode')
   nnoremap <Left>  :vertical resize -2<CR>
   nnoremap <Right> :vertical resize +2<CR>
 endif
-
-
 
