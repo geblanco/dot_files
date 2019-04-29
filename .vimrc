@@ -281,3 +281,6 @@ if get(g:, 'elite_mode')
   nnoremap <Right> :vertical resize +2<CR>
 endif
 
+set wildchar=<Tab> wildmenu wildmode=full
+
+
