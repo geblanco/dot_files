@@ -15,8 +15,8 @@ set $KP_8 80
 set $KP_9 81
 set $KP_0 90
 # monitors
-set $mon1 "DVI-I-1"
-set $mon2 "VGA-1"
+set $mon1 "HDMI1"
+set $mon2 "VGA1"
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -26,7 +26,14 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec xfce4-terminal
+# bindsym $mod+Return exec xfce4-terminal
+bindsym $mod+Return exec hyper
+# drop down, testing hyper
+# bindsym Control+grave exec HYPER_DROPDOWN=1 hyper
+# bindsym Control+Q exec HYPER_DROPDOWN=1 hyper
+# drop down terminal, wonderful xfce4-terminal
+# bindsym Control+grave exec xfce4-terminal --drop-down
+# bindsym Control+Q exec xfce4-terminal --drop-down
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -80,7 +87,6 @@ bindsym $mod+space focus mode_toggle
 
 # floating scratchpad
 bindsym $mod+z move scratchpad
-# bindsym $mod+x exec --no-startup-id xfce4-terminal --drop-down
 bindsym $mod+x scratchpad show
 
 # focus the parent container
@@ -187,9 +193,6 @@ bindsym $mod+Shift+W exec nautilus $HOME
 bindsym $mod+Shift+S exec nautilus $HOME/Documents/Dev
 bindsym $mod+Shift+D exec nautilus $HOME/Documents
 bindsym $mod+Shift+F exec nautilus $HOME/Downloads
-# drop down terminal, wonderful xfce4-terminal
-bindsym Control+grave exec xfce4-terminal --drop-down
-bindsym Control+Q exec xfce4-terminal --drop-down
 
 # play-pause music
 bindsym $mod+BackSpace exec --no-startup-id playerctl play-pause
@@ -240,6 +243,8 @@ for_window [class="VirtualBox"] floating enable
 # exec syndaemon -i 0.2 -R -K -d
 # Background
 exec_always feh --randomize --bg-scale /usr/share/backgrounds/liked/*
+# exec_always --no-startup-id /opt/scripts/ds -t
+exec_always HYPER_DROPDOWN=1 hyper
 
 # exec --no-startup-id /usr/lib/gsd-xsettings
 # exec_always --no-startup-id gnome-power-manager
