@@ -42,21 +42,28 @@ export TF_CPP_MIN_LOG_LEVEL=3
 
 export VISUAL="vim"
 
-send_file() {
+_telegram() {
+  local cmd=$1; shift
   local msg=""
   for file in $@; do
-    msg="send_file Guille $file"
+    msg="$cmd Guille $file"
     telegram-cli --exec $msg --disable-output
   done
 }
 
-alias backup=send_file
+backup() {
+  _telegram "send_file" $@
+}
+
+msg() {
+  _telegram "msg" $@
+}
 
 _enter_python() {
   local arg=$1; shift
   local cwd=$(pwd)
   local cmd="cd $cwd"
-  work_dir="$HOME/Documents/Dev/python_data_science/"
+  local work_dir="$HOME/Documents/Dev/python_data_science/"
   if [[ $# -gt 0 ]]; then
     work_dir=$1
   fi
@@ -81,4 +88,11 @@ else
   export SSH_AGENT_PID=$(pgrep -u "$USER" -ao ssh-agent | cut -f 1 -d ' ')
   export SSH_AUTH_SOCK=$(pgrep -u "$USER" -ao ssh-agent | awk '{print $(NF)}')
 fi
+
+init-nvm() {
+  [ -z "$NVM_DIR" ] && export NVM_DIR="$HOME/.nvm"
+  source /usr/share/nvm/nvm.sh
+  source /usr/share/nvm/bash_completion
+  source /usr/share/nvm/install-nvm-exec
+}
 

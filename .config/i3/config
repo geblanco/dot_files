@@ -230,7 +230,7 @@ bar {
 # make mutant floating window
 for_window [class="Mutant" instance="mutant"] floating enable
 exec_always --no-startup-id mutant
-for_window [class="VirtualBox"] floating enable
+for_window [class="VirtualBox Machine"] floating enable
 
 # Startup scripts
 # Background
