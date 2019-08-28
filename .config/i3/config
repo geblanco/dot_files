@@ -187,10 +187,11 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # File explorer shortcuts
-bindsym $mod+Shift+W exec nautilus $HOME
-bindsym $mod+Shift+S exec nautilus $HOME/Documents/Dev
-bindsym $mod+Shift+D exec nautilus $HOME/Documents
-bindsym $mod+Shift+F exec nautilus $HOME/Downloads
+bindsym $mod+Shift+W exec thunar $HOME
+bindsym $mod+Shift+S exec thunar $HOME/Documents/Dev
+bindsym $mod+Shift+D exec thunar $HOME/Documents
+bindsym $mod+Shift+F exec thunar $HOME/Downloads
+
 
 # play-pause music
 bindsym $mod+BackSpace exec --no-startup-id playerctl play-pause
