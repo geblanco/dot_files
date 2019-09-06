@@ -63,7 +63,7 @@ _enter_python() {
   local arg=$1; shift
   local cwd=$(pwd)
   local cmd="cd $cwd"
-  local work_dir="$HOME/Documents/Dev/python_data_science/"
+  local work_dir="$HOME/Documents/Dev/python_envs/data_science"
   if [[ $# -gt 0 ]]; then
     work_dir=$1
   fi
