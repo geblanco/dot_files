@@ -23,6 +23,15 @@
   # is used in the bar {} block below.
   font pango:monospace 8
 
+  # class                 border  backgr. text    indicator child_border
+  client.focused          #28b015 #208212 #ffffff #1fb30b   #208212
+  client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+  client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+  client.urgent           #2f343a #f01a1a #ffffff #f01a1a   #f01a1a
+  client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+  client.background       #ffffff
+
 #########  APPS #########
   # start a terminal
   bindsym $mod+Return exec xfce4-terminal
