@@ -119,7 +119,7 @@
   bindsym $mod+x scratchpad show
 
   # focus the parent container
-  bindsym $mod+p focus parent
+  bindsym $mod+a focus parent
 
   # focus the child container
   bindsym $mod+o focus child
