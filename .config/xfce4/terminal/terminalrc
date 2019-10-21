@@ -33,4 +33,6 @@ TabActivityColor=#a6a6e2e22e2e
 MiscNewTabAdjacent=FALSE
 MiscShowRelaunchDialog=TRUE
 Encoding=UTF-8
+MiscSearchDialogOpacity=100
+MiscShowUnsafePasteDialog=FALSE
 

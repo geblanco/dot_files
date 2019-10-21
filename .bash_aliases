@@ -96,3 +96,6 @@ init-nvm() {
   source /usr/share/nvm/install-nvm-exec
 }
 
+mail_to_pb() {
+  secret-tool lookup all home-mail | pbcopy
+}

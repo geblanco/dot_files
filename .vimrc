@@ -18,34 +18,23 @@ Plugin 'gmarik/Vundle.vim'
 """" Utility plugins
 Plugin 'scrooloose/nerdtree'                                     " Tree explorer
 Plugin 'https://github.com/ctrlpvim/ctrlp.vim'                   " Nice fuzzy search
-Plugin 'Raimondi/delimitMate.git'                                " Auto closing braces, parens..., like sublime text
-" Plugin 'junegunn/fzf.vim'                                        " Fuzzy search across files & more
-" Plugin 'junegunn/fzf'                                            " Fuzzy search binary
+Plugin 'Raimondi/delimitMate'                                    " Auto closing braces, parens..., like sublime text
 Plugin 'godlygeek/tabular'
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'} " Status line
 Plugin 'chaoren/vim-wordmotion'                                  " Move in camelCase and snake_oil motions
 Plugin 'junegunn/limelight.vim'                                  " Focused writting
 Plugin 'junegunn/goyo.vim'                                       " Focused writting
-" Plugin 'SirVer/ultisnips'                                        " Snippets engine, NEEDS Deoplete for menus
 " Plugin 'ludovicchabant/vim-gutentags'                            " Automatic, powerful tags
 " Plugin 'ervandew/supertab'
 """ Project management
 Plugin 'https://github.com/vimwiki/vimwiki'
 Plugin 'https://github.com/tbabej/taskwiki'
 """ Programming utilities
-" Plugin 'honza/vim-snippets'       " Snippets are separated from the engine
-" Plugin 'szw/vim-tags'
 Plugin 'majutsushi/tagbar'
 """" Themes and appearance
-Plugin 'crusoexia/vim-monokai'    " Provides Monokai
-Plugin 'ryanoasis/vim-devicons'   " Pretty icons on the tree
+Plugin 'crusoexia/vim-monokai'        " Provides Monokai
+Plugin 'ryanoasis/vim-devicons'       " Pretty icons on the tree
 """" Completion
-"" The rpc plugin fails because of python shared symbols, better compile
-"" python with --shared symbols
-" Plugin 'Shougo/deoplete.nvim.git'
-" Plugin 'roxma/nvim-yarp.git'
-" Plugin 'roxma/vim-hug-neovim-rpc.git'
-" Plugin 'rkulla/pydiction.git'         " python dictionary completion
 Plugin 'pangloss/vim-javascript'
 Plugin 'crusoexia/vim-javascript-lib' " Better js completions
 Plugin 'vim-scripts/AutoComplPop'     " Autocompletion on tab
@@ -56,7 +45,6 @@ Plugin 'lervag/vimtex.git'            " TeX Plugin
 Plugin 'vim-syntastic/syntastic'      " Syntax checking
 " Column increment (must be downloaded by hand)
 " https://vim.sourceforge.io/scripts/script.php?script_id=670
-"Plugin 'https://github.com/Shougo/deoplete.nvim.git'
 Plugin 'm0n0l0c0/vim-repl.git'        " python/nodejs repl
 
 call vundle#end()            " required
@@ -136,54 +124,11 @@ augroup END
 """ gutentags
 "let g:gutentags_cache_dir = $HOME .'/.cache/guten_tags'
 let g:gutentags_ctags_exclude = ['*.session.vim']
-""" diction path
-let g:pydiction_location = '/home/gb/.vim/bundle/pydiction/complete-dict' 
-""" completor jedi path
-let g:completor_python_binary = '/usr/lib/python2.7/site-packages/jedi/'
-""" deoplete
-let g:deoplete#enable_at_startup = 1
 """ repl
 let g:repl_ipython = 1
 let g:repl_vertical = 1
 """ distraction free
 let g:lite_dfm_left_offset = 10
-""" Util Snippets
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-""" fzf
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
-" Default fzf layout
-" - down / up / left / right
-let g:fzf_layout = { 'down': '~40%' }
-" In Neovim, you can set up fzf window using a Vim command
-let g:fzf_layout = { 'window': 'enew' }
-let g:fzf_layout = { 'window': '-tabnew' }
-" Customize fzf colors to match your color scheme
-let g:fzf_colors =
-  \ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-" Enable per-command history.
-" CTRL-N and CTRL-P will be automatically bound to next-history and
-" previous-history instead of down and up. If you don't like the change,
-" explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
-let g:fzf_history_dir = '~/.local/share/fzf-history'
 """ Insertion Tabularize, by now it tabs on |, could be extended to anything
 " inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 function! s:align()
@@ -258,18 +203,6 @@ nnoremap <C-W>t :vertical term <CR>
 nnoremap <leader>o :CtrlP<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>df :call DFMode() <CR>
-"""" ToDo:= Test this out
-" Fzf Shortcuts
-" nnoremap <leader>o :Files<CR>
-" Mapping selecting Mappings
-" nmap <leader><tab> <plug>(fzf-maps-n)
-" xmap <leader><tab> <plug>(fzf-maps-x)
-" omap <leader><tab> <plug>(fzf-maps-o)
-" Insert mode completion
-" imap <c-x><c-k> <plug>(fzf-complete-word)
-" imap <c-x><c-f> <plug>(fzf-complete-path)
-" imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-" imap <c-x><c-l> <plug>(fzf-complete-line)
 
 "" Enable Elite mode, no arrows
 let g:elite_mode=1
@@ -283,4 +216,5 @@ endif
 
 set wildchar=<Tab> wildmenu wildmode=full
 
+" let g:kite_auto_complete=0
 
