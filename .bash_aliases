@@ -1,9 +1,6 @@
 alias subl='/opt/sublime_text/sublime_text'
 alias dev="cd ~/Documents/Dev/"
 alias res="cd ~/Documents/Research/"
-# done by script in bin
-# alias pbCopy='xclip -sel clip'
-# alias pbPaste='xclip -o -sel clip'
 alias getclip='xclip -o --sel | pbcopy'
 exo='exo-open'
 hash exo-open 2>/dev/null
@@ -16,8 +13,6 @@ alias you-dl='youtube-dl -xi --yes-playlist --audio-format "wav" -o "%(title)s.%
 alias config='/usr/bin/git --git-dir=$HOME/.cfg --work-tree=$HOME'
 
 export NODE_PATH='$HOME/.npm-global/lib/node_modules'
-export GZIP=-9
-export XZ_OPT=-9
 
 # custom scripts
 export PATH=/opt/scripts/:$PATH
@@ -82,13 +77,6 @@ env_shell() {
   _enter_python "shell" $@
 }
 
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-  ssh-agent -s -D -a $XDG_RUNTIME_DIR/ssh-agent.socket > ~/.config/ssh-agent-data
-else
-  export SSH_AGENT_PID=$(pgrep -u "$USER" -ao ssh-agent | cut -f 1 -d ' ')
-  export SSH_AUTH_SOCK=$(pgrep -u "$USER" -ao ssh-agent | awk '{print $(NF)}')
-fi
-
 init-nvm() {
   [ -z "$NVM_DIR" ] && export NVM_DIR="$HOME/.nvm"
   source /usr/share/nvm/nvm.sh
@@ -96,6 +84,31 @@ init-nvm() {
   source /usr/share/nvm/install-nvm-exec
 }
 
-mail_to_pb() {
-  secret-tool lookup all home-mail | pbcopy
+get() {
+  if [[ $# -lt 1 ]]; then
+    echo "Nothing to get"
+    return
+  fi
+  local attr=$1  
+  secret-tool lookup all $attr
 }
+
+get_to_pb() {
+  get $1 | pbcopy
+}
+
+mail_to_pb() {
+  get_to_pb home-mail
+}
+
+github_to_pb() {
+  get_to_pb github-username
+}
+
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+  ssh-agent -s -D -a $XDG_RUNTIME_DIR/ssh-agent.socket > ~/.config/ssh-agent-data
+else
+  export SSH_AGENT_PID=$(pgrep -u "$USER" -ao ssh-agent | cut -f 1 -d ' ')
+  export SSH_AUTH_SOCK=$(pgrep -u "$USER" -ao ssh-agent | awk '{print $(NF)}')
+fi
+
