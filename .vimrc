@@ -77,6 +77,7 @@ set backupdir=~/.vim/backup//
 augroup fileTypesSetup
   " overwrite default
   autocmd FileType python setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2 textwidth=79
+  autocmd FileType vimwiki setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2 textwidth=79
   " Enable omni completion.
   autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
   autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
