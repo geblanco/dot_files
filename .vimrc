@@ -24,7 +24,7 @@ Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'} " Status line
 Plugin 'chaoren/vim-wordmotion'                                  " Move in camelCase and snake_oil motions
 Plugin 'junegunn/limelight.vim'                                  " Focused writting
 Plugin 'junegunn/goyo.vim'                                       " Focused writting
-" Plugin 'ludovicchabant/vim-gutentags'                            " Automatic, powerful tags
+Plugin 'ludovicchabant/vim-gutentags'                            " Automatic, powerful tags
 " Plugin 'ervandew/supertab'
 """ Project management
 Plugin 'https://github.com/vimwiki/vimwiki'
@@ -204,6 +204,9 @@ nnoremap <C-W>t :vertical term <CR>
 nnoremap <leader>o :CtrlP<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>df :call DFMode() <CR>
+" Tagbar
+map <F8> :TagbarToggle<CR>
+nnoremap <leader>tb :TagbarToggle<CR>
 
 "" Enable Elite mode, no arrows
 let g:elite_mode=1
