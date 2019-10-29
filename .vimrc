@@ -153,7 +153,7 @@ let g:syntastic_loc_list_height=2
 """ Ctags
 let g:vim_tags_auto_generate  = 0
 """ vimwiki
-let g:taskwiki_use_python2 = 1
+let g:taskwiki_use_python2 = 0
 """""""""""""""""""""""""""""""""""""""
 " Appearance & Misc
 """""""""""""""""""""""""""""""""""""""
@@ -176,7 +176,12 @@ augroup todoSetup
   autocmd VimEnter,WinEnter * call TodoSyntax()
 augroup END
 function TodoSyntax()
-  syn match mTodo "\c\s*todo\s*\([:=]\{1,2}\)\?\s*" containedin=ALL
+  syn match mTodo "\c\stodo$" containedin=ALL
+  syn match mTodo "\c\stodo\s" containedin=ALL
+  syn match mTodo "\c\stodo\(:=\)" containedin=ALL
+  syn match mTodo "\c^todo\s" containedin=ALL
+  syn match mTodo "\c^todo$" containedin=ALL
+  syn match mTodo "\c^todo\(:=\)" containedin=ALL
   hi def link mTodo Todo
 endfunction
 """ Distraction free mode
