@@ -36,15 +36,4 @@ export HISTIGNORE='history*':$HISTIGNORE
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg --work-tree=$HOME'
 
-# Load theme
-#[[ -f ~/.config/sh_theme ]] && source ~/.config/sh_theme
-
-function _update_ps1() {
-  PS1="$(/home/gb/Documents/Dev/powerline-shell/start.py $? 2> /dev/null)\n$(/home/gb/Documents/Dev/powerline-shell/powerline-shell.py $? 2> /dev/null)"
-}
-
-if [ "$TERM" != "linux" ]; then
-    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-fi
-
 stty -ixon
