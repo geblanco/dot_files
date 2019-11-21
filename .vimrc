@@ -16,7 +16,7 @@ set encoding=utf8
 """ Utility plugins
   Plugin 'scrooloose/nerdtree'                                     " Tree explorer
   Plugin 'https://github.com/ctrlpvim/ctrlp.vim'                   " Nice fuzzy search
-  Plugin 'Raimondi/delimitMate'                                    " Auto closing braces, parens..., like sublime text
+  Plugin 'jiangmiao/auto-pairs'                                    " Auto closing braces, parens..., like sublime text
   Plugin 'godlygeek/tabular'
   Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'} " Status line
   Plugin 'chaoren/vim-wordmotion'                                  " Move in camelCase and snake_oil motions
@@ -214,7 +214,8 @@ set encoding=utf8
   nnoremap <C-W>t :vertical term <CR>
 """ Shortcuts
   " CtrlP, save, dfmode & tagbar
-  nnoremap <leader>o :CtrlP<CR>
+  nnoremap <C-P> :CtrlP<CR>
+  nnoremap <C-T> :CtrlPTag<CR>
   nnoremap <leader>w :w<CR>
   nnoremap <leader>df :call DFMode() <CR>
   map <F8> :TagbarToggle<CR>
