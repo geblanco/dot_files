@@ -121,7 +121,7 @@ set encoding=utf8
     autocmd VimResized *.tex exe 'resize ' . float2nr((&lines -1) * 0.8)
   augroup END
 """ gutentags
-  "let g:gutentags_cache_dir = $HOME .'/.cache/guten_tags'
+  let g:gutentags_cache_dir = $HOME .'/.cache/guten_tags'
   let g:gutentags_ctags_exclude = ['*.session.vim']
 """ Ctags
   let g:vim_tags_auto_generate  = 0
