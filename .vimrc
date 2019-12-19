@@ -16,13 +16,13 @@ set encoding=utf8
 """ Utility plugins
   Plugin 'scrooloose/nerdtree'                                     " Tree explorer
   Plugin 'https://github.com/ctrlpvim/ctrlp.vim'                   " Nice fuzzy search
-  Plugin 'jiangmiao/auto-pairs'                                    " Auto closing braces, parens..., like sublime text
+  Plugin 'https://github.com/Raimondi/delimitMate'                 " Auto closing braces, parens..., like sublime text
   Plugin 'godlygeek/tabular'
   Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'} " Status line
   Plugin 'chaoren/vim-wordmotion'                                  " Move in camelCase and snake_oil motions
   Plugin 'junegunn/limelight.vim'                                  " Focused writting
   Plugin 'junegunn/goyo.vim'                                       " Focused writting
-  Plugin 'ludovicchabant/vim-gutentags'                            " Automatic, powerful tags
+  " Plugin 'ludovicchabant/vim-gutentags'                            " Automatic, powerful tags
   " Plugin 'ervandew/supertab'
 """ Project management
   Plugin 'https://github.com/vimwiki/vimwiki'
@@ -155,7 +155,10 @@ set encoding=utf8
 """ vimwiki
   " let g:taskwiki_use_python2 = 0
 """ Kite
-  let g:kite_auto_complete=0
+  let g:kite_auto_complete=1
+""" Do not mess with auto fold when writing
+  autocmd InsertLeave,WinEnter * let &l:foldmethod=g:oldfoldmethod
+  autocmd InsertEnter,WinLeave * let g:oldfoldmethod=&l:foldmethod | setlocal foldmethod=manual
 
 """""""""""""""""""""""""""""""""""""""
 " Appearance & Misc
