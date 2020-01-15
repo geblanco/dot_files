@@ -16,7 +16,8 @@ set encoding=utf8
 """ Utility plugins
   Plugin 'scrooloose/nerdtree'                                     " Tree explorer
   Plugin 'https://github.com/ctrlpvim/ctrlp.vim'                   " Nice fuzzy search
-  Plugin 'https://github.com/Raimondi/delimitMate'                 " Auto closing braces, parens..., like sublime text
+  " Plugin 'https://github.com/Raimondi/delimitMate'                 " Auto closing braces, parens..., like sublime text
+  Plugin 'jiangmiao/auto-pairs'
   Plugin 'godlygeek/tabular'
   Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'} " Status line
   Plugin 'chaoren/vim-wordmotion'                                  " Move in camelCase and snake_oil motions
@@ -74,8 +75,8 @@ set encoding=utf8
   " autocmd always on augroup to avoid re-stacking the command when sourcing vimrc
   augroup fileTypesSetup
     " overwrite default
-    autocmd FileType python setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2 textwidth=79
-    autocmd FileType vimwiki setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2 textwidth=79
+    autocmd FileType python setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2 textwidth=79 omnifunc=python3complete#Complete
+    autocmd FileType vimwiki setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2 textwidth=79 
     " Enable omni completion.
     autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
     autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -156,6 +157,7 @@ set encoding=utf8
   " let g:taskwiki_use_python2 = 0
 """ Kite
   let g:kite_auto_complete=1
+  let g:kite_log=0
 """ Do not mess with auto fold when writing
   autocmd InsertLeave,WinEnter * let &l:foldmethod=g:oldfoldmethod
   autocmd InsertEnter,WinLeave * let g:oldfoldmethod=&l:foldmethod | setlocal foldmethod=manual
