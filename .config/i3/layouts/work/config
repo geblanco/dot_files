@@ -1,0 +1,6 @@
+# number of day of the week as with date +"%u" (Monday = 1)
+declare -a WORKTIME_DAYS=(1 2 3 4 5)
+# two values (from, to) in 24 hour format as with date +"%H"
+declare -a WORKTIME_HOURS=(9 18)
+# workspaces to initialize
+declare -a WORKSPACES=(1 2 3)
