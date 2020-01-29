@@ -42,7 +42,7 @@
             "swallows": [
                {
                   "class": "^firefox$",
-                  "instance": "^Navigator$",
+                  "instance": "^Navigator$"
                }
             ],
             "type": "con"

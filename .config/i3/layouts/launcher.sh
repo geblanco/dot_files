@@ -18,8 +18,9 @@ fi
 check_layout_in_time() {
   local work_from=${WORKTIME_HOURS[0]}
   local work_to=${WORKTIME_HOURS[1]}
+  # ensure decimal base (numbers below 10 am get interpreted as octal 08, 09...)
   local current_day=$(date +"%u")
-  local current_hour=$(date +"%H")
+  local current_hour="10#$(date +"%H")"
   if [[ " ${WORKTIME_DAYS[@]} " =~ " ${current_day} " ]]; then
     if [[ "${current_hour}" -ge "${work_from}" && "${current_hour}" -lt "${work_to}" ]]; then
       return
@@ -65,6 +66,8 @@ if check_layout_in_time; then
     launch_workspace $workspace_id
     sleep 2s;
   done
+  # select main workspaces
+  i3-msg 'workspace 2; workspace 1'
 else
   echo "Should launch nothing"
 fi
