@@ -161,7 +161,14 @@ set encoding=utf8
 """ Do not mess with auto fold when writing
   autocmd InsertLeave,WinEnter * let &l:foldmethod=g:oldfoldmethod
   autocmd InsertEnter,WinLeave * let g:oldfoldmethod=&l:foldmethod | setlocal foldmethod=manual
-
+""" vimtex
+  let g:vimtex_compiler_latexmk = {
+        \ 'options' : [
+        \   '-shell-escape' ,
+        \   '-synctex=1' ,
+        \   '-interaction=nonstopmode' 
+        \ ],
+        \}
 """""""""""""""""""""""""""""""""""""""
 " Appearance & Misc
 """""""""""""""""""""""""""""""""""""""
