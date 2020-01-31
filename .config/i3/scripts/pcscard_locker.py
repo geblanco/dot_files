@@ -1,114 +1,64 @@
 #! /usr/bin/env python
 
 from __future__ import print_function
-from smartcard.scard import *
-import smartcard.util
-import subprocess
+from time import sleep
 
-def printstate(state):
-  reader, eventstate, atr = state
-  print(reader + " " + smartcard.util.toHexString(atr, smartcard.util.HEX))
-  if eventstate & SCARD_STATE_ATRMATCH:
-    print('\tCard found')
-  if eventstate & SCARD_STATE_UNAWARE:
-    print('\tState unware')
-  if eventstate & SCARD_STATE_IGNORE:
-    print('\tIgnore reader')
-  if eventstate & SCARD_STATE_UNAVAILABLE:
-    print('\tReader unavailable')
-  if eventstate & SCARD_STATE_EMPTY:
-    print('\tReader empty')
-  if eventstate & SCARD_STATE_PRESENT:
-    print('\tCard present in reader')
-  if eventstate & SCARD_STATE_EXCLUSIVE:
-    print('\tCard allocated for exclusive use by another application')
-  if eventstate & SCARD_STATE_INUSE:
-    print('\tCard in used by another application but can be shared')
-  if eventstate & SCARD_STATE_MUTE:
-    print('\tCard is mute')
-  if eventstate & SCARD_STATE_CHANGED:
-    print('\tState changed')
-  if eventstate & SCARD_STATE_UNKNOWN:
-    print('\tState unknowned')
+from smartcard.CardMonitoring import CardMonitor, CardObserver
+from smartcard.util import toHexString
+from subprocess import run
 
-def is_card_just_inserted(state):
-  _, eventstate, _ = state
-  return (eventstate & SCARD_STATE_PRESENT) and (eventstate & SCARD_STATE_CHANGED)
+import sys, signal
 
-def is_card_just_removed(state):
-  _, eventstate, _ = state
-  return (eventstate & SCARD_STATE_EMPTY) and (eventstate & SCARD_STATE_CHANGED)
+CARD_ID = '3B 6F 00 00 80 66 B0 07 01 01 07 07 53 02 31 10 82 90 00'
+LOCK_SCRIPT = '/home/gb/.config/i3/scripts/lock'
 
-def get_context():
-  # let the exception to raise
-  hresult, hcontext = SCardEstablishContext(SCARD_SCOPE_USER)
-  if hresult != SCARD_S_SUCCESS:
-    raise error(
-      'Failed to establish context: ' + \
-      SCardGetErrorMessage(hresult))
-  print('Context established!')
-  return hcontext
+def signal_handler(signal, frame):
+  print('Exit')
+  sys.exit(0)
 
-def get_reader(hcontext):
-  # let the exception to raise
-  hresult, readers = SCardListReaders(hcontext, [])
-  if hresult != SCARD_S_SUCCESS:
-    raise error(
-      'Failed to list readers: ' + \
-      SCardGetErrorMessage(hresult))
-  print('PCSC Readers:', readers)
-
-  readerstates = [(readers[0], SCARD_STATE_UNAWARE)]
-  print('----- Current reader and card states are: -------')
-  hresult, newstates = SCardGetStatusChange(hcontext, 0, readerstates)
-  for i in newstates:
-    printstate(i)
-  return newstates
-
-def disconnect(hcontext):
-  # let the exception to raise
-  hresult = SCardReleaseContext(hcontext)
-  if hresult != SCARD_S_SUCCESS:
-    raise error(
-      'Failed to release context: ' + \
-      SCardGetErrorMessage(hresult))
-  print('Released context.')
+signal.signal(signal.SIGINT, signal_handler)
 
 def unlock():
-  subprocess.run(['killall', 'i3lock'])
+  print('unlocking')
+  run(['killall', 'i3lock'])
 
 def lock():
-  subprocess.run(['/home/gb/.config/i3/scripts/lock'])
+  print('locking')
+  run([LOCK_SCRIPT])
 
-def loop(hcontext, states):
-  if is_card_just_removed(states[0]):
-    start_empty = True
-    print('Started with empty reader, not locking')
-  else:
-    start_empty = False
-  # ToDo := Do this in another thread so Ctrl-C can be registered
-  while True:
-    hresult, states = SCardGetStatusChange(
-                              hcontext,
-                              INFINITE,
-                              states)
+# a simple card observer that prints inserted/removed cards
+class PrintObserver(CardObserver):
+  def check_card_id(self, card):
+    return toHexString(card.atr) == CARD_ID
 
-    if start_empty:
-      start_empty = False
-      continue
-    print('New card state')
-    if is_card_just_inserted(states[0]):
-      print('-> Card inserted')
-      unlock()
-    elif is_card_just_removed(states[0]):
-      print('-> Card removed')
-      lock()
+  def update(self, observable, actions):
+    (addedcards, removedcards) = actions
+    should_lock = len(addedcards) == 1 and len(removedcards) == 0
+    if len(addedcards) == 1:
+      should_lock = False
+      card = addedcards[0]
+    elif len(removedcards) == 1:
+      should_lock = True
+      card = removedcards[0]
+    else:
+      return
+    if self.check_card_id(card):
+      if should_lock:
+        lock()
+      else:
+        unlock()
 
 def main():
-  hcontext = get_context()
-  readerstates = get_reader(hcontext)
-  loop(hcontext, readerstates)
-  disconnect(hcontext)
+  print('Insert or remove a smartcard in the system.')
+  print('')
+  cardmonitor = CardMonitor()
+  cardobserver = PrintObserver()
+  cardmonitor.addObserver(cardobserver)
+
+  while True:
+    sleep(1)
+
+  cardmonitor.deleteObserver(cardobserver)
 
 if __name__ == '__main__':
   main()
