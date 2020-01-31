@@ -267,4 +267,5 @@
   exec_always --no-startup-id /opt/scripts/ds -t
   # layout launcher
   exec --no-startup-id $HOME/.config/i3/layouts/launcher.sh > /home/gb/.config/i3/layouts/log
-
+  # pcscard locker
+  exec --no-startup-id $HOME/.config/i3/scripts/pcscard_locker.py
