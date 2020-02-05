@@ -14,9 +14,6 @@
   set $KP_8 80
   set $KP_9 81
   set $KP_0 90
-  # monitors
-  set $mon1 "DVI-I-1"
-  set $mon2 "VGA-1"
 
 #########  FONT COLORS ######### 
   # Font for window titles. Will also be used by the bar unless a different font
