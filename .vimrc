@@ -16,8 +16,8 @@ set encoding=utf8
 """ Utility plugins
   Plugin 'scrooloose/nerdtree'                                     " Tree explorer
   Plugin 'https://github.com/ctrlpvim/ctrlp.vim'                   " Nice fuzzy search
-  " Plugin 'https://github.com/Raimondi/delimitMate'                 " Auto closing braces, parens..., like sublime text
-  Plugin 'jiangmiao/auto-pairs'
+  Plugin 'https://github.com/Raimondi/delimitMate'                 " Auto closing braces, parens..., like sublime text
+  " Plugin 'jiangmiao/auto-pairs'
   Plugin 'godlygeek/tabular'
   Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'} " Status line
   Plugin 'chaoren/vim-wordmotion'                                  " Move in camelCase and snake_oil motions

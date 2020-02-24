@@ -43,9 +43,11 @@
 
   # File explorer shortcuts
   bindsym $mod+Shift+W exec thunar $HOME
-  bindsym $mod+Shift+S exec thunar $HOME/Documents/Dev
   bindsym $mod+Shift+D exec thunar $HOME/Documents
   bindsym $mod+Shift+F exec thunar $HOME/Downloads
+
+  # Keyboard layout toggle
+  bindsym $mod+Shift+S exec $scriptdir/kblayout_toggle
 
   # kill focused window
   bindsym $mod+Shift+q kill

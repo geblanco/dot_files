@@ -1,0 +1,26 @@
+#!/bin/bash
+
+function get_layout() {
+  echo $(setxkbmap -query | grep layout | awk '{ print $2 }')
+}
+
+function get_base_layout() {
+  echo $(sed -n -e 's/^KEYMAP=\(.*\)$/\1/p' /etc/vconsole.conf)
+}
+
+function set_layout() {
+  local layout=$1; shift
+  setxkbmap $layout
+}
+
+# allow toggling between current layout and spanish
+# sometimes gb, sometimes us layout
+prev_layout=$(get_base_layout)
+base_layout="es"
+
+if [[ "$(get_layout)" =~ "${base_layout}" ]]; then
+  set_layout $prev_layout
+else
+  set_layout $base_layout
+fi
+
