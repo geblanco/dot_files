@@ -5,7 +5,7 @@ function get_layout() {
 }
 
 function get_base_layout() {
-  echo $(sed -n -e 's/^KEYMAP=\(.*\)$/\1/p' /etc/vconsole.conf)
+  echo $(localectl status | sed -n -e 's/X11 Layout:\(.*\)$/\1/p' | tr -d ' ')
 }
 
 function set_layout() {
