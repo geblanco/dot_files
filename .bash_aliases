@@ -18,8 +18,8 @@ export NODE_PATH='$HOME/.npm-global/lib/node_modules'
 export PATH=/opt/scripts/:$PATH
 # npm global path (fix permissions)
 export PATH="$HOME/.npm-global/bin:$PATH"
-# ruby gems
-export PATH="/home/gb/.gem/ruby/2.5.0/bin:$PATH"
+# python anaconda
+export PATH="/opt/anaconda/bin:$PATH"
 
 # Servers config
 if [[ -f ~/.config/servers ]]; then
