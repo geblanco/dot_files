@@ -5,7 +5,8 @@ function get_layout() {
 }
 
 function get_base_layout() {
-  echo $(localectl status | sed -n -e 's/X11 Layout:\(.*\)$/\1/p' | tr -d ' ')
+  # some Layouts are listed as: lang1, lang2, get the first one
+  echo $(localectl status | sed -n -e 's/X11 Layout:\(.*\)$/\1/p' | tr ',' ' ' | awk '{print $1}')
 }
 
 function set_layout() {
