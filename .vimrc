@@ -18,8 +18,8 @@ set encoding=utf8
   Plugin 'https://github.com/ctrlpvim/ctrlp.vim'                   " Nice fuzzy search
   Plugin 'https://github.com/Raimondi/delimitMate'                 " Auto closing braces, parens..., like sublime text
   " Plugin 'jiangmiao/auto-pairs'
-  Plugin 'godlygeek/tabular'
   Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'} " Status line
+  Plugin 'godlygeek/tabular'
   Plugin 'chaoren/vim-wordmotion'                                  " Move in camelCase and snake_oil motions
   Plugin 'junegunn/limelight.vim'                                  " Focused writting
   Plugin 'junegunn/goyo.vim'                                       " Focused writting
@@ -113,6 +113,7 @@ set encoding=utf8
   set termencoding=utf-8
   set guifont=Ubuntu\ Mono\ derivative\ Powerline:8
   let g:Powerline_symbols = 'fancy'
+  let g:powerline_pycmd="python3"
 """ ctrlp
   let g:ctrlp_map = '<F3>'
 """ latex
