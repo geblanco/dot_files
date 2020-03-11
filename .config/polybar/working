@@ -77,7 +77,7 @@
 
 [module/player-mpris-tail]
     type = custom/script
-    exec = ~/.config/polybar/player-mpris-tail/player-mpris-tail.py -f '{icon} {:artist:t40:{artist}:}{:artist: - :}{:album:t40:{album}:}{:ablum: - :}{:t80:{title}:}' --icon-playing='>' --icon-paused='||' --icon-stopped='[]'
+    exec = ~/.config/polybar/player-mpris-tail/player-mpris-tail.py -f '{icon} {:artist:t40:{artist} - :}{:album:t80:{album} - :}{:t80:{title}:}' --icon-playing='>' --icon-paused='||' --icon-stopped='[]'
     tail = true
     click-left = playerctl previous
     click-right = playerctl next
