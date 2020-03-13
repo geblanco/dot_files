@@ -41,12 +41,14 @@ set encoding=utf8
   Plugin 'maksimr/vim-jsbeautify'
   Plugin 'lervag/vimtex.git'            " TeX Plugin
   Plugin 'vim-syntastic/syntastic'      " Syntax checking
+  Plugin 'google/vim-jsonnet'           " Jsonnet syntax ftplugin
 """ Column increment (must be downloaded by hand)
   " https://vim.sourceforge.io/scripts/script.php?script_id=670
 """ REPL
   Plugin 'm0n0l0c0/vim-repl.git'        " python/nodejs repl
 """ end, required
   call vundle#end()
+  filetype off
   filetype plugin indent on
 
 """""""""""""""""""""""""""""""""""""""
