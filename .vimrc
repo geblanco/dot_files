@@ -18,7 +18,8 @@ set encoding=utf8
   Plugin 'https://github.com/ctrlpvim/ctrlp.vim'                   " Nice fuzzy search
   Plugin 'https://github.com/Raimondi/delimitMate'                 " Auto closing braces, parens..., like sublime text
   " Plugin 'jiangmiao/auto-pairs'
-  Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'} " Status line
+  Plugin 'vim-airline/vim-airline'                                 " Status line
+  Plugin 'vim-airline/vim-airline-themes'                          " And it's themes
   Plugin 'godlygeek/tabular'
   Plugin 'chaoren/vim-wordmotion'                                  " Move in camelCase and snake_oil motions
   Plugin 'junegunn/limelight.vim'                                  " Focused writting
@@ -28,11 +29,14 @@ set encoding=utf8
 """ Project management
   Plugin 'https://github.com/vimwiki/vimwiki'
   Plugin 'https://github.com/tbabej/taskwiki'
+  Plugin 'tpope/vim-fugitive'
 """ Programming utilities
   Plugin 'majutsushi/tagbar'
 """ Themes and appearance
-  Plugin 'crusoexia/vim-monokai'        " Provides Monokai
-  Plugin 'ryanoasis/vim-devicons'       " Pretty icons on the tree
+  Plugin 'crusoexia/vim-monokai'          " Provides Monokai
+  Plugin 'ryanoasis/vim-devicons'         " Pretty icons on the tree
+  Plugin 'sonph/onehalf', {'rtp': 'vim/'} " Used for airline theme
+  Plugin 'NLKNguyen/papercolor-theme'     " Cool light theme
 """ Completion
   Plugin 'pangloss/vim-javascript'
   Plugin 'crusoexia/vim-javascript-lib' " Better js completions
@@ -59,6 +63,8 @@ set encoding=utf8
   set shiftwidth=2
   set softtabstop=2
   set t_Co=256
+  set cursorline
+  set noshowmode
   set number
   set ruler                      " show the cursor position all the time
   set showcmd                    " display incomplete commands
@@ -73,6 +79,10 @@ set encoding=utf8
   set undodir=~/.vim/undo//
   set directory=~/.vim/swap//
   set backupdir=~/.vim/backup//
+  set laststatus=2
+  set term=xterm-256color
+  set termencoding=utf-8
+  set guifont=Ubuntu\ Mono\ derivative\ Powerline:8
 """ filetypes
   " autocmd always on augroup to avoid re-stacking the command when sourcing vimrc
   augroup fileTypesSetup
@@ -107,15 +117,59 @@ set encoding=utf8
   endif
 
 """""""""""""""""""""""""""""""""""""""
+" Appearance & Misc
+"""""""""""""""""""""""""""""""""""""""
+""" Theme
+  colorscheme monokai
+  " set background=light
+  " colorscheme PaperColor
+  " let g:airline_theme='papercolor'
+""" Spell colors, no eye bloodbleeding please
+  hi SpellBad none
+  hi SpellCap none
+  hi SpellRare none
+  hi SpellLocal none
+  hi SpellBad term=bold ctermfg=197 guifg=#F92772
+  hi SpellCap term=bold ctermfg=12 gui=undercurl guisp=Blue
+  hi SpellRare term=bold ctermfg=13 gui=undercurl guisp=Magenta
+  hi SpellLocal term=bold ctermfg=14 gui=undercurl guisp=Cyan
+""" Player function
+  function! Player(cmd)
+    execute 'silent !playerctl ' . a:cmd | execute 'redraw!'
+  endfunction
+  augroup todoSetup
+    " ALWAYS highlight todos
+    autocmd VimEnter,WinEnter * call TodoSyntax()
+  augroup END
+  function TodoSyntax()
+    syn match mTodo "\c\stodo$" containedin=ALL
+    syn match mTodo "\c\stodo\s" containedin=ALL
+    syn match mTodo "\c\stodo\(:=\)" containedin=ALL
+    syn match mTodo "\c^todo\s" containedin=ALL
+    syn match mTodo "\c^todo$" containedin=ALL
+    syn match mTodo "\c^todo\(:=\)" containedin=ALL
+    hi def link mTodo Todo
+  endfunction
+  """ Distraction free mode
+  function! DFMode()
+    Goyo
+    Limelight!!
+  endfunction
+""" Tab wildmenu
+  set wildchar=<Tab> wildmenu wildmode=full
+
+"""""""""""""""""""""""""""""""""""""""
 " Plugins Configuration
 """""""""""""""""""""""""""""""""""""""
-""" powerline
-  set laststatus=2
-  set term=xterm-256color
-  set termencoding=utf-8
-  set guifont=Ubuntu\ Mono\ derivative\ Powerline:8
-  let g:Powerline_symbols = 'fancy'
-  let g:powerline_pycmd="python3"
+""" status line
+  let g:airline_theme='onehalfdark'
+  let g:airline_powerline_fonts = 1
+  let g:airline#extensions#vimtex#enabled = 1
+  let g:airline#extensions#tabline#enabled = 1
+  " With powerline symbols populated all symbols appear, but sections get
+  " separated by a >. To disable this behaviour entirely, disable previous
+  " line and enable the next two
+  " let g:airline_section_z = '%3p%% %{g:airline_symbols.linenr}%4l%#__restore__#%#__accent_bold#/%L% :%3v'
 """ ctrlp
   let g:ctrlp_map = '<F3>'
 """ latex
@@ -173,50 +227,11 @@ set encoding=utf8
         \ ],
         \}
 """""""""""""""""""""""""""""""""""""""
-" Appearance & Misc
-"""""""""""""""""""""""""""""""""""""""
-""" Theme
-  colorscheme monokai
-""" Spell colors, no eye bloodbleeding please
-  hi SpellBad none
-  hi SpellCap none
-  hi SpellRare none
-  hi SpellLocal none
-  hi SpellBad term=bold ctermfg=197 guifg=#F92772
-  hi SpellCap term=bold ctermfg=12 gui=undercurl guisp=Blue
-  hi SpellRare term=bold ctermfg=13 gui=undercurl guisp=Magenta
-  hi SpellLocal term=bold ctermfg=14 gui=undercurl guisp=Cyan
-""" Player function
-  function! Player(cmd)
-    execute 'silent !playerctl ' . a:cmd | execute 'redraw!'
-  endfunction
-  augroup todoSetup
-    " ALWAYS highlight todos
-    autocmd VimEnter,WinEnter * call TodoSyntax()
-  augroup END
-  function TodoSyntax()
-    syn match mTodo "\c\stodo$" containedin=ALL
-    syn match mTodo "\c\stodo\s" containedin=ALL
-    syn match mTodo "\c\stodo\(:=\)" containedin=ALL
-    syn match mTodo "\c^todo\s" containedin=ALL
-    syn match mTodo "\c^todo$" containedin=ALL
-    syn match mTodo "\c^todo\(:=\)" containedin=ALL
-    hi def link mTodo Todo
-  endfunction
-  """ Distraction free mode
-  function! DFMode()
-    Goyo
-    Limelight!!
-  endfunction
-""" Tab wildmenu
-  set wildchar=<Tab> wildmenu wildmode=full
-
-"""""""""""""""""""""""""""""""""""""""
 " Keyboard maps
 """""""""""""""""""""""""""""""""""""""
 """ nerdtree
   map <F2> : NERDTreeToggle<CR>
-""" move between tabs
+""" move between tabs and buffers
   nnoremap <C-Right> gT
   nnoremap <C-Left> gT
 """ split lines, like J to join
