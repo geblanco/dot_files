@@ -53,6 +53,8 @@ ZSH_THEME="lambda-mod"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-autosuggestions virtualenv)
 
+autoload -Uz compinit && compinit -i
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -86,6 +88,12 @@ source $ZSH/oh-my-zsh.sh
 
 if [[ -f $HOME/.bash_aliases ]]; then
 	source $HOME/.bash_aliases
+fi
+
+if [[ -d $HOME/.config/zshrc/completions ]]; then
+    for f in $HOME/.config/zshrc/completions/*.zsh; do
+        source $f
+    done
 fi
 
 stty -ixon
