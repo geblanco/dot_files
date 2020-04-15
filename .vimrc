@@ -30,6 +30,7 @@ set encoding=utf8
   Plugin 'https://github.com/vimwiki/vimwiki'
   Plugin 'https://github.com/tbabej/taskwiki'
   Plugin 'tpope/vim-fugitive'
+  Plugin 'itchyny/calendar.vim'
 """ Programming utilities
   Plugin 'majutsushi/tagbar'
 """ Themes and appearance
@@ -226,6 +227,10 @@ set encoding=utf8
         \   '-interaction=nonstopmode' 
         \ ],
         \}
+""" calendar
+  let g:calendar_google_calendar = 1
+  let g:calendar_first_day = 'monday'
+  source ~/.cache/calendar.vim/credentials.vim
 """""""""""""""""""""""""""""""""""""""
 " Keyboard maps
 """""""""""""""""""""""""""""""""""""""
