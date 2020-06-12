@@ -47,6 +47,8 @@ set encoding=utf8
   Plugin 'lervag/vimtex.git'            " TeX Plugin
   Plugin 'vim-syntastic/syntastic'      " Syntax checking
   Plugin 'google/vim-jsonnet'           " Jsonnet syntax ftplugin
+  Plugin 'cespare/vim-toml'             " Toml syntax
+  Plugin 'nvie/vim-flake8'
 """ Column increment (must be downloaded by hand)
   " https://vim.sourceforge.io/scripts/script.php?script_id=670
 """ REPL
@@ -88,13 +90,12 @@ set encoding=utf8
   " autocmd always on augroup to avoid re-stacking the command when sourcing vimrc
   augroup fileTypesSetup
     " overwrite default
-    autocmd FileType python setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2 textwidth=79 omnifunc=python3complete#Complete
+    autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4 smarttab expandtab shiftround autoindent textwidth=79
     autocmd FileType vimwiki setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2 textwidth=79 
     " Enable omni completion.
     autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
     autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
     autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
   augroup END
 """ backup & swap
   if has("vms")
