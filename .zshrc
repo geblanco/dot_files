@@ -2,12 +2,17 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh 
+if [[ -d /usr/share/oh-my-zsh/ ]]; then
+  export ZSH=/usr/share/oh-my-zsh
+else
+  export ZSH=~/.oh-my-zsh
+fi
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="lambda-mod"
+ZSH_THEME="af-magic"
+# ZSH_THEME="lambda-mod"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -52,8 +57,12 @@ ZSH_THEME="lambda-mod"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-autosuggestions virtualenv)
-
-autoload -Uz compinit && compinit -i
+autoload -Uz compinit
+if [[ "$(find ~/.zcompdump -mmin +1440 | wc -l)" -gt 0 ]]; then
+  compinit
+else
+  compinit -C
+fi
 
 source $ZSH/oh-my-zsh.sh
 
@@ -87,13 +96,13 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 if [[ -f $HOME/.bash_aliases ]]; then
-	source $HOME/.bash_aliases
+  source $HOME/.bash_aliases
 fi
 
 if [[ -d $HOME/.config/zshrc/completions ]]; then
-    for f in $HOME/.config/zshrc/completions/*.zsh; do
-        source $f
-    done
+  for f in $HOME/.config/zshrc/completions/*.zsh; do
+    source $f
+  done
 fi
 
 stty -ixon
