@@ -20,6 +20,8 @@ export PATH=/opt/scripts/:$PATH
 export PATH="$HOME/.npm-global/bin:$PATH"
 # python anaconda
 export PATH="/opt/anaconda/bin:$PATH"
+# python user
+export PATH="$HOME/.local/bin:$PATH"
 # enriched calendar view
 alias vcal="vim -c \":Cal\""
 alias wiki="vim -c \":VimwikiIndex\""
