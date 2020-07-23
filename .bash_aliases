@@ -22,6 +22,7 @@ export PATH="$HOME/.npm-global/bin:$PATH"
 export PATH="/opt/anaconda/bin:$PATH"
 # python user
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
 # enriched calendar view
 alias vcal="vim -c \":Cal\""
 alias wiki="vim -c \":VimwikiIndex\""
