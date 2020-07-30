@@ -1,8 +1,11 @@
 [core]
-    remote = vespa_dvc
+    remote = local_dvc
 [cache]
     dir = /home/gb/data/dvc_cache
     type = "hardlink,symlink"
     shared = group
 ['remote "vespa_dvc"']
     url = "/home/gb/data/dvc"
+['remote "local_dvc"']
+    url = "/home/gb/backup/dvc"
+

@@ -106,3 +106,6 @@ if [[ -d $HOME/.config/zshrc/completions ]]; then
 fi
 
 stty -ixon
+
+# added by travis gem
+[ ! -s /home/gb/.travis/travis.sh ] || source /home/gb/.travis/travis.sh
