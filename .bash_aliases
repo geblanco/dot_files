@@ -26,6 +26,7 @@ export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
 # enriched calendar view
 alias vcal="vim -c \":Cal\""
 alias wiki="vim -c \":VimwikiIndex\""
+export WWW_HOME="duckduckgo.com"
 
 # Servers config
 if [[ -f ~/.config/servers ]]; then
