@@ -38,7 +38,7 @@
     font-2 = FontAwesome:pixelsize=12;1
     font-4 = MaterialIcons:size=10;-1
 
-    modules-left = powermenu ewmh player-mpris-tail
+    modules-left = powermenu i3 player-mpris-tail
     modules-right = cpu memory separator keyboard gmail pkg battery
     modules-center = date
     tray-position = right
@@ -47,8 +47,8 @@
     tray-transparent = false
     underline-size = 3
 
-[module/ewmh]
-    type = internal/xworkspaces
+[module/i3]
+    type = internal/i3
     pin-workspaces = true
     ; Create click handler used to focus desktop
     ; Default: true
@@ -68,33 +68,33 @@
     ; Default: %name%
     label-monitor = %name%
 
-    icon-0 = 1;
-    icon-1 = 2;
-    icon-2 = 3;
-    icon-4 = 5;
-    icon-default = 
+    ws-icon-0 = 1;
+    ws-icon-1 = 2;
+    ws-icon-2 = 3;
+    ws-icon-4 = 5;
+    ws-icon-default = 
 
-    label-active = %icon% %name%
-    label-active-foreground = #ffffff
-    label-active-background = #3f3f3f
-    label-active-underline = #fba922
-    label-active-padding = 4
-
-    ; Available tokens:
-    ;   %name%
-    ;   %icon%
-    ;   %index%
-    ; Default: %icon% %name%
-    label-occupied = %icon%
-    label-occupied-underline = #555555
-    label-occupied-padding = 2
+    label-focused = %icon% %name%
+    label-focused-foreground = #ffffff
+    label-focused-background = #3f3f3f
+    label-focused-underline = #fba922
+    label-focused-padding = 4
 
     ; Available tokens:
     ;   %name%
     ;   %icon%
     ;   %index%
     ; Default: %icon% %name%
-    label-urgent = %icon%
+    label-unfocused = %icon%
+    label-unfocused-underline = #555555
+    label-unfocused-padding = 2
+
+    ; Available tokens:
+    ;   %name%
+    ;   %icon%
+    ;   %index%
+    ; Default: %icon% %name%
+    label-urgent = %icon% %name%
     label-urgent-foreground = #000000
     label-urgent-background = #bd2c40
     label-urgent-underline = #9b0a20
@@ -105,9 +105,9 @@
     ;   %icon%
     ;   %index%
     ; Default: %icon% %name%
-    label-empty = %icon%
-    label-empty-foreground = #55
-    label-empty-padding = 2
+    label-visible = %icon%
+    label-visible-foreground = #55
+    label-visible-padding = 2
 
 [module/player-mpris-tail]
     type = custom/script
