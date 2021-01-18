@@ -257,6 +257,7 @@ set encoding=utf8
   nnoremap <leader>df :call DFMode() <CR>
   map <F8> :TagbarToggle<CR>
   nnoremap <leader>tb :TagbarToggle<CR>
+  command Cal :Calendar -view=year -split=horizontal -position=below -height=12
 """ Arrows
   let g:elite_mode=1
   " Disable arrow movement, resize splits instead.

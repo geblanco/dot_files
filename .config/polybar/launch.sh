@@ -17,7 +17,7 @@ today=$(date +%Y-%m-%d)
 
 # Launch bar1 and bar2
 for screen in $screens; do
-	MONITOR=$screen polybar main -c ~/.config/polybar/working -l info 1>&2 2>~/.config/polybar/log/$today-app.log &
+  MONITOR=$screen polybar main -c ~/.config/polybar/working -l info 1>&2 2>~/.config/polybar/log/$today-app.log &
 done
 
 echo "Bars launched..."

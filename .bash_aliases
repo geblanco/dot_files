@@ -43,6 +43,7 @@ export NODE_PATH='/home/gb/.npm-global/lib/node_modules'
 export TF_CPP_MIN_LOG_LEVEL=3
 
 export VISUAL="vim"
+export EDITOR="vim"
 
 _telegram() {
   local cmd=$1; shift

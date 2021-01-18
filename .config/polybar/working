@@ -7,137 +7,115 @@
 ;
 ;=====================================================
 [colors]
-	background = #222222
-	foreground = #eefafafa
-	foreground-alt = #66
-	linecolor = #fba922
+    background = #DD222222
+    foreground = #eefafafa
+    foreground-alt = #66
+    linecolor = #fba922
 
 [bar/main]
-	;override-redirect = true
-	wm-restack = i3
+    monitor = ${env:MONITOR}
+    width = 100%
+    height = 27
+    radius = 0.0
+    fixed-center = true
 
-	monitor = ${env:MONITOR}
-	width = 100%
-	height = 27
+    background = ${colors.background}
+    foreground = ${colors.foreground}
 
-	background = ${colors.background}
-	foreground = ${colors.foreground}
+    spacing = 3
 
-	spacing = 3
-	lineheight = 2
-	padding-right = 2
-	module-margin-left = 1
-	module-margin-right = 1
+    line-size = 3
+    line-color = #f00
 
-	font-0 = NotoSans-Regular:pixelsize=10;1
-	font-1 = NotoSans-Regular:pixelsize=10;3
-	font-2 = FontAwesome:pixelsize=12;1
-	font-4 = MaterialIcons:size=10;-1
+    padding-left = 2
+    padding-right = 4
 
-	modules-left = i3 player-mpris-tail
-	modules-right = volume keyboard gmail pkg separator cpu memory separator battery separator date powermenu
+    module-margin-left = 1
+    module-margin-right = 1
 
-	tray-position = center
-	tray-padding = 2
+    font-0 = NotoSans-Regular:pixelsize=10;1
+    font-1 = NotoSans-Regular:pixelsize=10;3
+    font-2 = FontAwesome:pixelsize=12;1
+    font-4 = MaterialIcons:size=10;-1
 
-	tray-transparent = false
-	underline-size = 3
+    modules-left = powermenu ewmh player-mpris-tail
+    modules-right = cpu memory separator keyboard gmail pkg battery
+    modules-center = date
+    tray-position = right
+    tray-padding = 2
 
-[module/i3]
-	type = internal/i3
-	format = <label-state> <label-mode>
-	pin-workspaces = true
+    tray-transparent = false
+    underline-size = 3
 
-	ws-icon-0 = 1;
-	ws-icon-1 = 3;
-	ws-icon-2 = 2;
-	ws-icon-3 = 5;
+[module/ewmh]
+    type = internal/xworkspaces
+    pin-workspaces = true
+    ; Create click handler used to focus desktop
+    ; Default: true
+    enable-click = true
+    ; Create scroll handlers used to cycle desktops
+    ; Default: true
+    enable-scroll = false
 
-	ws-icon-default = 
+    ; Available tags:
+    ;   <label-monitor>
+    ;   <label-state> - gets replaced with <label-(active|urgent|occupied|empty)>
+    ; Default: <label-state>
+    format = <label-state>
 
-	label-focused = %icon% %name%
-	label-focused-foreground = #ffffff
-	label-focused-background = #3f3f3f
-	label-focused-underline = #fba922
-	label-focused-padding = 2
+    ; Available tokens:
+    ;   %name%
+    ; Default: %name%
+    label-monitor = %name%
 
-	label-visible = %icon% %name%
-	label-visible-underline = #555555
-	label-visible-padding = 2
+    icon-0 = 1;
+    icon-1 = 2;
+    icon-2 = 3;
+    icon-4 = 5;
+    icon-default = 
 
-	label-unfocused = %icon% %name%
-	label-unfocused-underline = #555555
-	label-unfocused-padding = 2
+    label-active = %icon% %name%
+    label-active-foreground = #ffffff
+    label-active-background = #3f3f3f
+    label-active-underline = #fba922
+    label-active-padding = 4
 
-	label-urgent = %icon% %name%
-	label-urgent-foreground = #000000
-	label-urgent-background = #bd2c40
-	label-urgent-underline = #9b0a20
-	label-urgent-padding = 2
+    ; Available tokens:
+    ;   %name%
+    ;   %icon%
+    ;   %index%
+    ; Default: %icon% %name%
+    label-occupied = %icon%
+    label-occupied-underline = #555555
+    label-occupied-padding = 2
+
+    ; Available tokens:
+    ;   %name%
+    ;   %icon%
+    ;   %index%
+    ; Default: %icon% %name%
+    label-urgent = %icon%
+    label-urgent-foreground = #000000
+    label-urgent-background = #bd2c40
+    label-urgent-underline = #9b0a20
+    label-urgent-padding = 4
+
+    ; Available tokens:
+    ;   %name%
+    ;   %icon%
+    ;   %index%
+    ; Default: %icon% %name%
+    label-empty = %icon%
+    label-empty-foreground = #55
+    label-empty-padding = 2
 
 [module/player-mpris-tail]
     type = custom/script
-    exec = ~/.config/polybar/player-mpris-tail/player-mpris-tail.py -f '{icon} {:t20:{artist} - :}{:t30:{album} -:} {:t40:{title}:}' --icon-playing='>' --icon-paused='||' --icon-stopped='[]'
+    exec = ~/.config/polybar/player-mpris-tail/player-mpris-tail.py -f '{icon} {:t20:{artist} - :}{:t40:{title}:}' --icon-playing='' --icon-paused='' --icon-stopped=''
     tail = true
     click-left = playerctl previous
     click-right = playerctl next
     click-middle = playerctl play-pause
-
-[module/volume]
-	type = internal/volume
-	master-mixer = Master
-
-	format-volume = <label-volume> <bar-volume>
-
-	label-muted = 
-	label-muted-foreground = ${colors.foreground-alt}
-
-	label-volume = 
-	label-volume-foreground = ${colors.foreground}
-
-	bar-volume-width = 10
-	bar-volume-foreground-0 = #55aa55
-	bar-volume-foreground-1 = #55aa55
-	bar-volume-foreground-2 = #55aa55
-	bar-volume-foreground-3 = #55aa55
-	bar-volume-foreground-4 = #55aa55
-	bar-volume-foreground-5 = #f5a70a
-	bar-volume-foreground-6 = #ff5555
-	bar-volume-gradient = false
-	bar-volume-indicator = |
-	bar-volume-indicator-font = 2
-	bar-volume-fill = -
-	bar-volume-fill-font = 2
-	bar-volume-empty = -
-	bar-volume-empty-font = 2
-	bar-volume-empty-foreground = ${colors.foreground}
-
-	mapping = true
-
-[module/keyboard]
-	type = internal/xkeyboard
-	
-	blacklist-0 = num lock
-
-	format-prefix = %{T2} ⌨ %{T-}
-	label-layout = %{T2} %name% %{T-}
-	label-indicator-padding = 2
-
-[module/gmail]
-	type = custom/script
-	exec = $HOME/.config/polybar/gmail/launch.py --nosound
-	exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
-	label-font = 2
-	tail = true
-	click-left = xdg-open https://mail.google.com
-
-[module/pkg]
-	type = custom/script
-	interval = 1200
-	format = <label>
-	label = "%{T2} %output:0:30% %{T-}"
-	exec = $HOME/.config/polybar/pkg.sh
-	exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
 
 [module/separator]
 	type = custom/text
@@ -158,88 +136,114 @@
 	label-font = 2
 	label = RAM %{F#99} %percentage_used%% %{F-}
 
+[module/keyboard]
+    type = internal/xkeyboard
+    
+    blacklist-0 = num lock
+
+    format-prefix = %{T2} ⌨ %{T-}
+    label-layout = %{T2} %name% %{T-}
+    label-indicator-padding = 2
+
+[module/gmail]
+    type = custom/script
+    exec = $HOME/.config/polybar/gmail/launch.py --nosound
+    exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
+    label-font = 2
+    tail = true
+    click-left = xdg-open https://mail.google.com
+
+[module/pkg]
+	type = custom/script
+	interval = 1200
+	format = <label>
+	label = "%{T2} %output:0:30% %{T-}"
+	exec = $HOME/.config/polybar/pkg.sh
+	exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
+
 [module/battery]
-  type = internal/battery
+    type = internal/battery
 
-  ; This is useful in case the battery never reports 100% charge
-  full-at = 99
+    ; This is useful in case the battery never reports 100% charge
+    full-at = 99
 
-  ; Use the following command to list batteries and adapters:
-  ; $ ls -1 /sys/class/power_supply/
-  battery = BAT0
-  adapter = AC
+    ; Use the following command to list batteries and adapters:
+    ; $ ls -1 /sys/class/power_supply/
+    battery = BAT0
+    adapter = AC
 
-  ; If an inotify event haven't been reported in this many
-  ; seconds, manually poll for new values.
-  ;
-  ; Needed as a fallback for systems that don't report events
-  ; on sysfs/procfs.
-  ;
-  ; Disable polling by setting the interval to 0.
-  ;
-  ; Default: 5
-  poll-interval = 5
-  format-charging = <animation-charging> <label-charging>
-  label-charging = %{F#32CD32} %percentage%% %{F-}
+    ; If an inotify event haven't been reported in this many
+    ; seconds, manually poll for new values.
+    ;
+    ; Needed as a fallback for systems that don't report events
+    ; on sysfs/procfs.
+    ;
+    ; Disable polling by setting the interval to 0.
+    ;
+    ; Default: 5
+    poll-interval = 5
+    format-charging = <animation-charging> <label-charging>
+    label-charging = %{F#32CD32} %percentage%% %{F-}
 
-  animation-charging-0 = 
-  animation-charging-1 = 
-  animation-charging-2 = 
-  animation-charging-3 = 
-  animation-charging-4 = 
-  ; Framerate in milliseconds
-  animation-charging-framerate = 750
+    animation-charging-0 = 
+    animation-charging-1 = 
+    animation-charging-2 = 
+    animation-charging-3 = 
+    animation-charging-4 = 
+    ; Framerate in milliseconds
+    animation-charging-framerate = 750
 
-  format-discharging = <ramp-capacity> <label-discharging>
-  label-discharging = %{F#99} %percentage%% %{F-}
+    format-discharging = <ramp-capacity> <label-discharging>
+    label-discharging = %{F#99} %percentage%% %{F-}
 
-  ramp-capacity-0 = 
-  ramp-capacity-1 = 
-  ramp-capacity-2 = 
-  ramp-capacity-3 = 
-  ramp-capacity-4 = 
+    ramp-capacity-0 = 
+    ramp-capacity-1 = 
+    ramp-capacity-2 = 
+    ramp-capacity-3 = 
+    ramp-capacity-4 = 
 
 [module/date]
-	type = internal/date
-	label-font = 2
-	date = %%{F#fff}%Y-%m-%d%%{F-}  %%{F#99}%H:%M%%{F-}
-	date-alt = %%{F#fff}%A, %d %B %Y  %%{F#fff}%H:%M%%{F#666}:%%{F#fba922}%S%%{F-}
+    type = internal/date
+    interval = 5
+    date = %a, %b %d
+    time = %k:%M
+    label = %date%  %time%
 
 [module/powermenu]
-	type = custom/menu
+    type = custom/menu
 
-	format-padding = 1
+    format-padding = 1
 
-	label-open = 
-	label-close = 
-	label-separator = |
+    label-open = 
+    label-close = 
+    label-separator = |
 
-	menu-0-0 = %{T2} Terminate WM %{T-}
-	menu-0-0-foreground = #fba922
-	menu-0-0-exec = i3-msg exit
+    menu-0-0 = %{T2} Terminate WM %{T-}
+    menu-0-0-foreground = #fba922
+    menu-0-0-exec = i3-msg exit
 
-	menu-0-1 = %{T2} Reboot %{T-}
-	menu-0-1-foreground = #fba922
-	menu-0-1-exec = menu-open-1
-	
-	menu-0-2 = %{T2} Power off %{T-}
-	menu-0-2-foreground = #fba922
-	menu-0-2-exec = menu-open-2
+    menu-0-1 = %{T2} Reboot %{T-}
+    menu-0-1-foreground = #fba922
+    menu-0-1-exec = menu-open-1
+    
+    menu-0-2 = %{T2} Power off %{T-}
+    menu-0-2-foreground = #fba922
+    menu-0-2-exec = menu-open-2
 
-	menu-1-0 = %{T2} Reboot %{T-}
-	menu-1-0-foreground = #fba922
-	menu-1-0-exec = reboot
-	
-	menu-1-1 = %{T2} Cancel %{T-}
-	menu-1-1-foreground = #fba922
-	menu-1-1-exec = menu-open-0
+    menu-1-0 = %{T2} Reboot %{T-}
+    menu-1-0-foreground = #fba922
+    menu-1-0-exec = reboot
+    
+    menu-1-1 = %{T2} Cancel %{T-}
+    menu-1-1-foreground = #fba922
+    menu-1-1-exec = menu-open-0
 
-	menu-2-0 = %{T2} Power off %{T-}
-	menu-2-0-foreground = #fba922
-	menu-2-0-exec = poweroff
-	
-	menu-2-1 = %{T2} Cancel %{T-}
-	menu-2-1-foreground = #fba922
-	menu-2-1-exec = menu-open-0
+    menu-2-0 = %{T2} Power off %{T-}
+    menu-2-0-foreground = #fba922
+    menu-2-0-exec = poweroff
+    
+    menu-2-1 = %{T2} Cancel %{T-}
+    menu-2-1-foreground = #fba922
+    menu-2-1-exec = menu-open-0
 
 ; vim:ft=dosini

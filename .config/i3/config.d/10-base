@@ -1,3 +1,6 @@
+# display SETTINGS
+# NOT needed, done with xorg conf
+  # exec_always --no-startup-id /opt/scripts/ds -t
 ######### VARIABLES ######### 
   # win modifier
   set $mod Mod4
@@ -105,7 +108,7 @@
   bindsym $mod+e layout toggle split
 
   # toggle tiling / floating
-  bindsym $mod+Shift+space floating toggle
+  bindsym $mod+Shift+space floating toggle, resize set 840 680, move position center
 
   # Use Mouse+$mod to drag floating windows to their wanted position
   floating_modifier $mod
@@ -237,17 +240,31 @@
   bindsym $mod+greater exec --no-startup-id $scriptdir/playerctl_ctrl.sh next
 
   # media keys: PulseAudio
-  bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-  bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-  bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+  bindsym XF86AudioLowerVolume exec --no-startup-id $scriptdir/pactl.sh volume -5% #decrease sound volume
+  bindsym XF86AudioRaiseVolume exec --no-startup-id $scriptdir/pactl.sh volume +5% #increase sound volume
+  bindsym XF86AudioMute exec --no-startup-id $scriptdir/pactl.sh mute toggle # mute sound
 
-  bindsym $mod+minus exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-  bindsym $mod+plus exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-  bindsym $mod+backslash exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound  
+  bindsym $mod+minus exec --no-startup-id $scriptdir/pactl.sh volume -5% #decrease sound volume
+  bindsym $mod+plus exec --no-startup-id $scriptdir/pactl.sh volume +5% #increase sound volume
+  bindsym $mod+backslash exec --no-startup-id $scriptdir/pactl.sh mute toggle # mute sound  
 
   # Sreen brightness controls
   bindcode 232 exec /opt/scripts/backlight "$(( `/opt/scripts/backlight` - 50 ))"
   bindcode 233 exec /opt/scripts/backlight "$(( `/opt/scripts/backlight` + 50 ))"
+
+#########  GAPS SETTINGS ########
+for_window [class=".*"] border pixel 0
+# Set inner/outer gaps
+gaps inner 4
+gaps outer 4  
+
+# Smart gaps (gaps used if only more than one container on the workspace)
+# smart_gaps on
+
+# Smart borders (draw borders around container only if it is not the only container on this workspace)
+# on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
+smart_borders on
+
 
 #########  BAR SETTINGS #########
   # Start i3bar to display a workspace bar (plus the system information i3status
@@ -258,9 +275,11 @@
   }
 
 ######### STARTUP #########
+  # background, compositor and trays
+  exec_always feh --randomize --bg-scale /usr/share/backgrounds/liked/*
+  exec_always --no-startup-id picom -o 0.95
+  exec_always --no-startup-id volumeicon
+  exec_always --no-startup-id nm-applet
   # mutant launcher
   exec_always --no-startup-id mutant
-  # background
-  exec_always feh --randomize --bg-scale /usr/share/backgrounds/liked/*
-  # display settings
-  exec_always --no-startup-id /opt/scripts/ds -t
+  exec_always --no-startup-id numlockx on
