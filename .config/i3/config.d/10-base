@@ -283,4 +283,3 @@ smart_borders on
   exec_always --no-startup-id nm-applet
   # mutant launcher
   exec_always --no-startup-id mutant
-  exec_always --no-startup-id numlockx on
