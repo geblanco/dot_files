@@ -24,7 +24,8 @@
   font pango:monospace 8
 
   # class                 border  backgr. text    indicator child_border
-  client.focused          #28b015 #208212 #ffffff #1fb30b   #208212
+  # client.focused          #28b015 #208212 #ffffff #1fb30b   #208212
+  client.focused          #e38d00 #e38d00 #ffffff #e38d00   #e38d00
   client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
   client.unfocused        #333333 #222222 #888888 #292d2e   #222222
   client.urgent           #2f343a #f01a1a #ffffff #f01a1a   #f01a1a
@@ -277,7 +278,7 @@ smart_borders on
 ######### STARTUP #########
   # background, compositor and trays
   exec_always feh --randomize --bg-scale /usr/share/backgrounds/liked/*
-  exec_always --no-startup-id picom -o 0.95
+  exec_always --no-startup-id picom -o 0.9 -i 0.9
   exec_always --no-startup-id volumeicon
   exec_always --no-startup-id nm-applet
   # mutant launcher
