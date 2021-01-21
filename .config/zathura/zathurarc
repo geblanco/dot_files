@@ -3,4 +3,4 @@ set first-page-column 1
 set synctex-editor-command 'subl %{input}:%{line}'
 set selection-clipboard clipboard
 set vertical-center "true"
-set guioptions none
+# set guioptions none
