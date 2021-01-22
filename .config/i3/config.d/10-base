@@ -279,7 +279,9 @@ smart_borders on
   # background, compositor and trays
   exec_always feh --randomize --bg-scale /usr/share/backgrounds/liked/*
   exec_always --no-startup-id picom -o 0.9 -i 0.9
-  exec_always --no-startup-id volumeicon
+  # seems to play nicer when chaning from bluetooth back and forth
+  exec_always --no-startup-id pnmixer
+  # exec_always --no-startup-id volumeicon
   exec_always --no-startup-id nm-applet
   # mutant launcher
   exec_always --no-startup-id mutant
