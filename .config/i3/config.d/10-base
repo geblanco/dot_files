@@ -21,7 +21,11 @@
 #########  FONT COLORS ######### 
   # Font for window titles. Will also be used by the bar unless a different font
   # is used in the bar {} block below.
-  font pango:monospace 8
+  # This is done to shrink the title bar on tabs, using only the window border size. Unfortunately
+  # this makes error messages from i3 unreadable. Don't fuck up!
+  # Taken from: https://github.com/aduros/dotfiles/blob/master/home/.config/i3/config
+  # font pango:monospace 8
+  font pango:mono 0
 
   # class                 border  backgr. text    indicator child_border
   # client.focused          #28b015 #208212 #ffffff #1fb30b   #208212
@@ -37,8 +41,10 @@
   # start a terminal
   bindsym $mod+Return exec xfce4-terminal
   # drop down terminal, wonderful xfce4-terminal
-  bindsym Control+grave exec xfce4-terminal --drop-down
-  bindsym Control+Q exec xfce4-terminal --drop-down
+  # bindsym Control+grave exec xfce4-terminal --drop-down
+  # bindsym Control+Q exec xfce4-terminal --drop-down
+  bindsym Control+grave exec --no-startup-id $HOME/.config/casper/launch.sh
+  bindsym Control+Q exec --no-startup-id $HOME/.config/casper/launch.sh
 
   # start dmenu (a program launcher)
   # bindsym $mod+d exec dmenu_run
@@ -118,8 +124,8 @@
   bindsym $mod+space focus mode_toggle
 
   # floating scratchpad
-  bindsym $mod+z move scratchpad
-  bindsym $mod+x scratchpad show
+  # bindsym $mod+z move scratchpad
+  # bindsym $mod+x scratchpad show
 
   # focus the parent container
   bindsym $mod+a focus parent
@@ -265,6 +271,7 @@ gaps outer 4
 # Smart borders (draw borders around container only if it is not the only container on this workspace)
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
 smart_borders on
+hide_edge_borders smart_no_gaps
 
 
 #########  BAR SETTINGS #########
