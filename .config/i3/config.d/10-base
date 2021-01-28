@@ -284,7 +284,7 @@ hide_edge_borders smart_no_gaps
 
 ######### STARTUP #########
   # background, compositor and trays
-  exec_always feh --randomize --bg-scale /usr/share/backgrounds/liked/*
+  exec_always feh --randomize --bg-scale /usr/share/backgrounds/*
   exec_always --no-startup-id picom -o 0.9 -i 0.9
   # seems to play nicer when chaning from bluetooth back and forth
   exec_always --no-startup-id pnmixer
