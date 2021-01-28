@@ -1,7 +1,14 @@
 #!/bin/bash
 
 get_active_sink() {
-  echo $(pactl list | grep -i 'State: RUNNING' -A 1 | grep 'Name: ' | awk '{print $NF}')
+  # best effort to distinguish between input/output: sort and tail
+  echo $(pactl list |\
+    grep -i 'State: RUNNING' -A 1 |\
+    grep 'Name: ' |\
+    awk '{print $NF}' |\
+    sort |\
+    tail -n 1
+  )
 }
 
 if [[ "$#" -lt 2 ]]; then
