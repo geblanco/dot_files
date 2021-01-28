@@ -62,6 +62,9 @@
   # kill focused window
   bindsym $mod+Shift+q kill
 
+  # main window managing, taken from github.com/aduros
+  bindsym $mod+p exec --no-startup-id $scriptdir/promote-window
+
 #########  APP SETTINGS #########
   # predefined apps to workspaces
   # intended use should be with assign but some clients 
@@ -292,3 +295,5 @@ hide_edge_borders smart_no_gaps
   exec_always --no-startup-id nm-applet
   # mutant launcher
   exec_always --no-startup-id mutant
+  # 2 - column layout
+  exec_always --no-startup-id $scriptdir/column-layout
