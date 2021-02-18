@@ -26,6 +26,7 @@ export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
 # enriched calendar view
 alias vcal="vim -c \":Cal\""
 alias wiki="vim -c \":VimwikiIndex\""
+alias zettel="vim -c \":VimwikiIndex 2\""
 export WWW_HOME="duckduckgo.com"
 
 # Servers config
@@ -44,6 +45,8 @@ export TF_CPP_MIN_LOG_LEVEL=3
 
 export VISUAL="vim"
 export EDITOR="vim"
+
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git"'
 
 _telegram() {
   local cmd=$1; shift

@@ -9,13 +9,17 @@ set encoding=utf8
 """""""""""""""""""""""""""""""""""""""
 " Vundle Configuration
 """""""""""""""""""""""""""""""""""""""
-""" runtime path & initialize
+  """ runtime path & initialize
   set rtp+=~/.vim/bundle/Vundle.vim
+  set rtp+=/usr/bin/fzf
+  set rtp+=/usr/bin/ag
+  set rtp+=/bin/rg
   call vundle#begin()
   Plugin 'gmarik/Vundle.vim'
-""" Utility plugins
+  """ Utility plugins
   Plugin 'scrooloose/nerdtree'                                     " Tree explorer
-  Plugin 'https://github.com/ctrlpvim/ctrlp.vim'                   " Nice fuzzy search
+  " substituted by fzf
+  " Plugin 'https://github.com/ctrlpvim/ctrlp.vim'                   " Nice fuzzy search
   Plugin 'https://github.com/Raimondi/delimitMate'                 " Auto closing braces, parens..., like sublime text
   " Plugin 'jiangmiao/auto-pairs'
   Plugin 'vim-airline/vim-airline'                                 " Status line
@@ -26,34 +30,38 @@ set encoding=utf8
   Plugin 'junegunn/goyo.vim'                                       " Focused writting
   " Plugin 'ludovicchabant/vim-gutentags'                            " Automatic, powerful tags
   " Plugin 'ervandew/supertab'
-""" Project management
+  """ Project management
   Plugin 'https://github.com/vimwiki/vimwiki'
   Plugin 'https://github.com/tbabej/taskwiki'
   Plugin 'tpope/vim-fugitive'
   Plugin 'itchyny/calendar.vim'
-""" Programming utilities
+  """ Programming utilities
   Plugin 'majutsushi/tagbar'
-""" Themes and appearance
+  """ Themes and appearance
   Plugin 'crusoexia/vim-monokai'          " Provides Monokai
   Plugin 'ryanoasis/vim-devicons'         " Pretty icons on the tree
   Plugin 'sonph/onehalf', {'rtp': 'vim/'} " Used for airline theme
   Plugin 'NLKNguyen/papercolor-theme'     " Cool light theme
-""" Completion
+  """ Completion
   Plugin 'pangloss/vim-javascript'
   Plugin 'crusoexia/vim-javascript-lib' " Better js completions
   Plugin 'vim-scripts/AutoComplPop'     " Autocompletion on tab
-""" Programming languages
+  """ Programming languages
   Plugin 'maksimr/vim-jsbeautify'
   Plugin 'lervag/vimtex.git'            " TeX Plugin
   Plugin 'vim-syntastic/syntastic'      " Syntax checking
   Plugin 'google/vim-jsonnet'           " Jsonnet syntax ftplugin
   Plugin 'cespare/vim-toml'             " Toml syntax
   Plugin 'nvie/vim-flake8'
-""" Column increment (must be downloaded by hand)
+  """ Column increment (must be downloaded by hand)
   " https://vim.sourceforge.io/scripts/script.php?script_id=670
-""" REPL
+  """ REPL
   Plugin 'm0n0l0c0/vim-repl.git'        " python/nodejs repl
-""" end, required
+  """ Zettelkasten
+  Plugin 'junegunn/fzf'
+  Plugin 'junegunn/fzf.vim'
+  Plugin 'geblanco/vim-zettel'
+  """ end, required
   call vundle#end()
   filetype off
   filetype plugin indent on
@@ -61,7 +69,7 @@ set encoding=utf8
 """""""""""""""""""""""""""""""""""""""
 " Vim Configuration
 """""""""""""""""""""""""""""""""""""""
-""" history, backupdir, identation & basics
+  """ history, backupdir, identation & basics
   set expandtab
   set shiftwidth=2
   set softtabstop=2
@@ -86,7 +94,11 @@ set encoding=utf8
   set term=xterm-256color
   set termencoding=utf-8
   set guifont=Ubuntu\ Mono\ derivative\ Powerline:8
-""" filetypes
+  if executable('rg')
+    set grepprg=rg\ --vimgrep\ --smart-case\ --hidden\ --follow
+  endif
+
+  """ filetypes
   " autocmd always on augroup to avoid re-stacking the command when sourcing vimrc
   augroup fileTypesSetup
     " overwrite default
@@ -98,14 +110,14 @@ set encoding=utf8
     autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
     autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
   augroup END
-""" backup & swap
+  """ backup & swap
   if has("vms")
     set nobackup    " do not keep a backup file, use versions instead
   else
     set backup    " keep a backup file (restore to previous version)
     set undofile    " keep an undo file (undo changes after closing)
   endif
-""" colors & lang
+  """ colors & lang
   " Switch syntax highlighting on, when the terminal has colors
   " Also switch on highlighting the last used search pattern.
   if &t_Co > 2 || has("gui_running")
@@ -122,12 +134,12 @@ set encoding=utf8
 """""""""""""""""""""""""""""""""""""""
 " Appearance & Misc
 """""""""""""""""""""""""""""""""""""""
-""" Theme
+  """ Theme
   colorscheme monokai
   " set background=light
   " colorscheme PaperColor
   " let g:airline_theme='papercolor'
-""" Spell colors, no eye bloodbleeding please
+  """ Spell colors, no eye bloodbleeding please
   hi SpellBad none
   hi SpellCap none
   hi SpellRare none
@@ -136,7 +148,7 @@ set encoding=utf8
   hi SpellCap term=bold ctermfg=12 gui=undercurl guisp=Blue
   hi SpellRare term=bold ctermfg=13 gui=undercurl guisp=Magenta
   hi SpellLocal term=bold ctermfg=14 gui=undercurl guisp=Cyan
-""" Player function
+  """ Player function
   function! Player(cmd)
     execute 'silent !playerctl ' . a:cmd | execute 'redraw!'
   endfunction
@@ -158,13 +170,13 @@ set encoding=utf8
     Goyo
     Limelight!!
   endfunction
-""" Tab wildmenu
+  """ Tab wildmenu
   set wildchar=<Tab> wildmenu wildmode=full
 
 """""""""""""""""""""""""""""""""""""""
 " Plugins Configuration
 """""""""""""""""""""""""""""""""""""""
-""" status line
+  """ status line
   let g:airline_theme='onehalfdark'
   let g:airline_powerline_fonts = 1
   let g:airline#extensions#vimtex#enabled = 1
@@ -173,27 +185,27 @@ set encoding=utf8
   " separated by a >. To disable this behaviour entirely, disable previous
   " line and enable the next two
   " let g:airline_section_z = '%3p%% %{g:airline_symbols.linenr}%4l%#__restore__#%#__accent_bold#/%L% :%3v'
-""" ctrlp
+  """ ctrlp
   let g:ctrlp_map = '<F3>'
-""" latex
+  """ latex
   let g:vimtex_view_method = 'zathura'
   " autoresize main tex window, too much log window from vimtex
   augroup resizeTex
     autocmd VimResized *.tex exe 'resize ' . float2nr((&lines -1) * 0.8)
   augroup END
-""" gutentags
+  """ gutentags
   let g:gutentags_cache_dir = $HOME .'/.cache/guten_tags'
   let g:gutentags_ctags_exclude = ['*.session.vim']
-""" Ctags
+  """ Ctags
   let g:vim_tags_auto_generate  = 0
-""" Tagbar
+  """ Tagbar
   let g:tagbar_left = 1
-""" repl
+  """ repl
   let g:repl_ipython = 1
   let g:repl_vertical = 1
-""" distraction free
+  """ distraction free
   let g:lite_dfm_left_offset = 10
-""" Insertion Tabularize, by now it tabs on |, could be extended to anything
+  """ Insertion Tabularize, by now it tabs on |, could be extended to anything
   " inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
   function! s:align()
     let p = '^\s*|\s.*\s|\s*$'
@@ -205,7 +217,7 @@ set encoding=utf8
       call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
     endif
   endfunction
-""" syntastic, ToDo := Test this out
+  """ syntastic, ToDo := Test this out
   set statusline+=%#warningmsg#
   set statusline+=%{SyntasticStatuslineFlag()}
   set statusline+=%*
@@ -213,15 +225,15 @@ set encoding=utf8
   let g:syntastic_auto_loc_list = 0
   let g:syntastic_check_on_open = 0
   let g:syntastic_loc_list_height=2
-""" vimwiki
+  """ vimwiki
   " let g:taskwiki_use_python2 = 0
-""" Kite
+  """ Kite
   let g:kite_auto_complete=1
   let g:kite_log=0
-""" Do not mess with auto fold when writing
+  """ Do not mess with auto fold when writing
   autocmd InsertLeave,WinEnter * let &l:foldmethod=g:oldfoldmethod
   autocmd InsertEnter,WinLeave * let g:oldfoldmethod=&l:foldmethod | setlocal foldmethod=manual
-""" vimtex
+  """ vimtex
   let g:vimtex_compiler_latexmk = {
         \ 'options' : [
         \   '-shell-escape' ,
@@ -229,36 +241,50 @@ set encoding=utf8
         \   '-interaction=nonstopmode' 
         \ ],
         \}
-""" calendar
+  """ calendar
   let g:calendar_google_calendar = 1
   let g:calendar_first_day = 'monday'
   source ~/.cache/calendar.vim/credentials.vim
+  """ zettel with vimwiki
+  let g:vimwiki_auto_tags = 1
+  let g:vimwiki_list = [
+    \ {'path':'~/vimwiki'},
+    \ {"path":"~/zettel", "auto_toc": 1, "links_space_char": "_", "disable_front_matter": 1}]
+  let g:zettel_options = [{}, {"template": "~/.config/zettel/default.tpl"}]
+  let g:zettel_format = "%y%m%d-%file_alpha%file_no-%title"
+  """ fzf
+  let g:fzf_layout = { 'down': '40%' }
 """""""""""""""""""""""""""""""""""""""
 " Keyboard maps
 """""""""""""""""""""""""""""""""""""""
-""" nerdtree
+  """ nerdtree
   map <F2> : NERDTreeToggle<CR>
-""" move between tabs and buffers
+  """ move between tabs and buffers
   nnoremap <C-Right> gT
   nnoremap <C-Left> gT
-""" split lines, like J to join
+  """ split lines, like J to join
   nnoremap K i<CR><Esc>
-""" mpris play, pause, next, prev song
+  """ mpris play, pause, next, prev song
   nnoremap <leader>ps :call Player('play-pause') <CR>
   nnoremap <leader>>s :call Player('next') <CR>
   nnoremap <leader><s :call Player('previous') <CR>
-""" nice vertical terminal (defaults to horizontal split)
+  """ nice vertical terminal (defaults to horizontal split)
   nnoremap <C-W>t :vertical term <CR>
-""" Shortcuts
+  """ Shortcuts
   " CtrlP, save, dfmode & tagbar
-  nnoremap <C-P> :CtrlP<CR>
+  " nnoremap <C-P> :CtrlP<CR>
   nnoremap <C-T> :CtrlPTag<CR>
   nnoremap <leader>w :w<CR>
   nnoremap <leader>df :call DFMode() <CR>
   map <F8> :TagbarToggle<CR>
   nnoremap <leader>tb :TagbarToggle<CR>
   command Cal :Calendar -view=year -split=horizontal -position=below -height=12
-""" Arrows
+  " Zettel
+  nnoremap <leader>zn :ZettelNew<space>
+  " Searching
+  nnoremap <C-P> :Files<CR>
+  nnoremap <C-F> :Ag<CR>
+  """ Arrows
   let g:elite_mode=1
   " Disable arrow movement, resize splits instead.
   if get(g:, 'elite_mode')
