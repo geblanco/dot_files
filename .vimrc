@@ -249,9 +249,9 @@ set encoding=utf8
   let g:vimwiki_auto_tags = 1
   let g:vimwiki_list = [
     \ {'path':'~/vimwiki'},
-    \ {"path":"~/zettel", "auto_toc": 1, "links_space_char": "_", "disable_front_matter": 1}]
-  let g:zettel_options = [{}, {"template": "~/.config/zettel/default.tpl"}]
-  let g:zettel_format = "%y%m%d-%file_alpha%file_no-%title"
+    \ {"path":"~/zettel", "auto_toc": 1, "links_space_char": "_"}]
+  let g:zettel_options = [{}, {"template": "~/.config/zettel/default.tpl", "disable_front_matter": 1}]
+  let g:zettel_format = "%title-%file_alpha"
   """ fzf
   let g:fzf_layout = { 'down': '40%' }
 """""""""""""""""""""""""""""""""""""""
