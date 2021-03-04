@@ -52,9 +52,9 @@
   bindsym $mod+Tab exec rofi -show
 
   # File explorer shortcuts
-  bindsym $mod+Shift+W exec thunar $HOME
-  bindsym $mod+Shift+D exec thunar $HOME/Documents
-  bindsym $mod+Shift+F exec thunar $HOME/Downloads
+  bindsym $mod+Shift+W exec nautilus $HOME
+  bindsym $mod+Shift+D exec nautilus $HOME/Documents
+  bindsym $mod+Shift+F exec nautilus $HOME/Downloads
 
   # Keyboard layout toggle
   bindsym $mod+Shift+S exec $scriptdir/kblayout_toggle
@@ -288,7 +288,7 @@ hide_edge_borders smart_no_gaps
 ######### STARTUP #########
   # background, compositor and trays
   exec_always feh --randomize --bg-scale /usr/share/backgrounds/*
-  exec_always --no-startup-id picom -o 0.9 -i 0.9
+  # exec_always --no-startup-id picom -o 0.9 -i 0.9 --backend glx
   # seems to play nicer when chaning from bluetooth back and forth
   exec_always --no-startup-id pnmixer
   # exec_always --no-startup-id volumeicon
