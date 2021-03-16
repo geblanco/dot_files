@@ -32,7 +32,7 @@ set encoding=utf8
   " Plugin 'ervandew/supertab'
   """ Project management
   Plugin 'https://github.com/vimwiki/vimwiki'
-  Plugin 'https://github.com/tbabej/taskwiki'
+  Plugin 'https://github.com/tools-life/taskwiki'
   Plugin 'tpope/vim-fugitive'
   Plugin 'itchyny/calendar.vim'
   """ Programming utilities
@@ -55,6 +55,7 @@ set encoding=utf8
   Plugin 'nvie/vim-flake8'
   """ Column increment (must be downloaded by hand)
   " https://vim.sourceforge.io/scripts/script.php?script_id=670
+  Plugin 'triglav/vim-visual-increment'
   """ REPL
   Plugin 'm0n0l0c0/vim-repl.git'        " python/nodejs repl
   """ Zettelkasten
@@ -244,7 +245,9 @@ set encoding=utf8
   """ calendar
   let g:calendar_google_calendar = 1
   let g:calendar_first_day = 'monday'
-  source ~/.cache/calendar.vim/credentials.vim
+  if !empty(glob("~/.cache/calendar.vim/credentials.vim"))
+    source ~/.cache/calendar.vim/credentials.vim
+  endif
   """ zettel with vimwiki
   let g:vimwiki_auto_tags = 1
   let g:vimwiki_list = [
