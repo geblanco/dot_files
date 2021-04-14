@@ -28,6 +28,7 @@ set encoding=utf8
   Plugin 'chaoren/vim-wordmotion'                                  " Move in camelCase and snake_oil motions
   Plugin 'junegunn/limelight.vim'                                  " Focused writting
   Plugin 'junegunn/goyo.vim'                                       " Focused writting
+  Plugin 'machakann/vim-sandwich'                                  " Surrounding text
   " Plugin 'ludovicchabant/vim-gutentags'                            " Automatic, powerful tags
   " Plugin 'ervandew/supertab'
   """ Project management
@@ -257,6 +258,14 @@ set encoding=utf8
   let g:zettel_format = "%title-%file_alpha"
   """ fzf
   let g:fzf_layout = { 'down': '40%' }
+  """ sandwich, strikethrough
+  let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
+  let g:sandwich#recipes += [
+    \ {'buns': ['~~', '~~'], 'nesting': 1, 'match_syntax': 1,
+    \ 'kind': ['add', 'replace'], 'action': ['add'], 'input': ['~']},
+    \ {'buns': ['~~', '~~'], 'nesting': 1, 'match_syntax': 1,
+    \ 'kind': ['delete'], 'action': ['delete'], 'input': ['~']}
+    \ ]
 """""""""""""""""""""""""""""""""""""""
 " Keyboard maps
 """""""""""""""""""""""""""""""""""""""
