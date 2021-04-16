@@ -76,6 +76,7 @@
   for_window [class="Mutant" instance="mutant"] floating enable
   for_window [class="VirtualBox Machine"] floating enable
   for_window [class="Xfce4-terminal" window_role="floating"] floating enable
+  for_window [class="Tk"] floating enable
 
 #########  NAVIGATION #########
   # change focus
