@@ -258,6 +258,17 @@ set encoding=utf8
   let g:zettel_format = "%title-%file_alpha"
   """ fzf
   let g:fzf_layout = { 'down': '40%' }
+  """ avoid breaking sentence objects (issues/62)
+  let g:textobj_sandwich_no_default_key_mappings = 1
+  xmap ib <Plug>(textobj-sandwich-auto-i)
+  omap ib <Plug>(textobj-sandwich-auto-i)
+  xmap ab <Plug>(textobj-sandwich-auto-a)
+  omap ab <Plug>(textobj-sandwich-auto-a)
+
+  xmap iq <Plug>(textobj-sandwich-query-i)
+  omap iq <Plug>(textobj-sandwich-query-i)
+  xmap aq <Plug>(textobj-sandwich-query-a)
+  omap aq <Plug>(textobj-sandwich-query-a)
   """ sandwich, strikethrough
   let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
   let g:sandwich#recipes += [
