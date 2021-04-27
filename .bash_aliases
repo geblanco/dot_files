@@ -1,3 +1,4 @@
+alias ccat='highlight -O truecolor'
 alias subl='/opt/sublime_text/sublime_text'
 alias dev="cd ~/Documents/Dev/"
 alias res="cd ~/Documents/Research/"
