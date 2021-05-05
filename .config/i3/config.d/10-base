@@ -298,3 +298,5 @@ hide_edge_borders smart_no_gaps
   exec_always --no-startup-id mutant
   # 2 - column layout
   exec_always --no-startup-id $scriptdir/column-layout
+  # notifications
+  exec_always --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd
