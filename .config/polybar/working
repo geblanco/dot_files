@@ -18,6 +18,7 @@
     height = 27
     radius = 0.0
     fixed-center = true
+    enable-ipc = true
 
     background = ${colors.background}
     foreground = ${colors.foreground}
@@ -218,17 +219,21 @@
     label-close = 
     label-separator = |
 
-    menu-0-0 = %{T2} Terminate WM %{T-}
+    menu-0-0 = %{T2} Lock WM %{T-}
     menu-0-0-foreground = #fba922
-    menu-0-0-exec = i3-msg exit
+    menu-0-0-exec = $HOME/.config/i3/scripts/lock
 
-    menu-0-1 = %{T2} Reboot %{T-}
+    menu-0-1 = %{T2} Terminate WM %{T-}
     menu-0-1-foreground = #fba922
-    menu-0-1-exec = menu-open-1
-    
-    menu-0-2 = %{T2} Power off %{T-}
+    menu-0-1-exec = i3-msg exit
+
+    menu-0-2 = %{T2} Reboot %{T-}
     menu-0-2-foreground = #fba922
-    menu-0-2-exec = menu-open-2
+    menu-0-2-exec = menu-open-1
+    
+    menu-0-3 = %{T2} Power off %{T-}
+    menu-0-3-foreground = #fba922
+    menu-0-3-exec = menu-open-2
 
     menu-1-0 = %{T2} Reboot %{T-}
     menu-1-0-foreground = #fba922

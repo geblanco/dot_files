@@ -233,14 +233,7 @@
   # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
   bindsym $mod+Shift+r restart
   # exit i3 (logs you out of your X session)
-  bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'X session options:' \
-    -b 'Shutdown' 'i3-msg exec $scriptdir/i3exit shutdown' \
-    -b 'Reboot' 'i3-msg exec $scriptdir/i3exit reboot' \
-    -b 'Hibernate' 'i3-msg exec $scriptdir/i3exit hibernate' \
-    -b 'Suspend' 'i3-msg exec $scriptdir/i3exit suspend' \
-    -b 'Logout i3' 'i3-msg exec $scriptdir/i3exit logout' \
-    -b 'Lock i3' 'i3-msg exec $scriptdir/i3exit lock'"
-
+  bindsym $mod+Shift+e exec --no-startup-id polybar-msg action '#powermenu.open.0'
   # Lock
   bindsym $mod+Shift+BackSpace exec --no-startup-id $HOME/.config/i3/scripts/lock
 
