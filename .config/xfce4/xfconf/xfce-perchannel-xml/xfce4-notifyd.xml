@@ -20,9 +20,13 @@
       <value type="string" value="Package Manager"/>
       <value type="string" value="Slack"/>
       <value type="string" value="Spotify"/>
+      <value type="string" value="teams"/>
       <value type="string" value="thunar"/>
       <value type="string" value="Thunar"/>
       <value type="string" value="Transmission"/>
     </property>
   </property>
+  <property name="expire-timeout" type="int" value="5"/>
+  <property name="theme" type="string" value="Smoke"/>
+  <property name="do-slideout" type="bool" value="true"/>
 </channel>

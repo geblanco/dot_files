@@ -43,6 +43,7 @@ fi
 export PYTHONSTARTUP="$HOME/.pythonrc"
 export NODE_PATH='/home/gb/.npm-global/lib/node_modules'
 export TF_CPP_MIN_LOG_LEVEL=3
+export PASSWORD_STORE_DIR="$HOME/.config/password-store"
 
 export VISUAL="vim"
 export EDITOR="vim"

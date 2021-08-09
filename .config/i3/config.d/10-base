@@ -128,8 +128,8 @@
   bindsym $mod+space focus mode_toggle
 
   # floating scratchpad
-  # bindsym $mod+z move scratchpad
-  # bindsym $mod+x scratchpad show
+  bindsym $mod+z exec --no-startup-id $HOME/.config/virtual_scratchpad.py --toggle --floating
+  bindsym $mod+x exec --no-startup-id $HOME/.config/virtual_scratchpad.py --show
 
   # focus the parent container
   bindsym $mod+a focus parent
