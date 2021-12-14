@@ -1,0 +1,12 @@
+#!/bin/bash
+
+tray=$1; shift
+
+if ! pgrep -u "$USER" $tray >/dev/null; then
+  echo "Enoent"
+  $($tray $@)
+else
+  echo "Already running"
+  exit 0
+fi
+

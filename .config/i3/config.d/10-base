@@ -6,6 +6,7 @@
   set $mod Mod4
   # scripts dir for lock, shutdown... scripts
   set $scriptdir $HOME/.config/i3/scripts
+  set $singleton $HOME/.config/i3/scripts/tray_singleton
   # keypad keyboard keycodes, for workspace handling
   set $KP_1 87
   set $KP_2 88
@@ -284,7 +285,7 @@ hide_edge_borders smart_no_gaps
   exec_always feh --randomize --bg-scale /usr/share/backgrounds/*
   # exec_always --no-startup-id picom -o 0.9 -i 0.9 --backend glx
   # seems to play nicer when chaning from bluetooth back and forth
-  exec_always --no-startup-id pnmixer
+  exec_always --no-startup-id $singleton pnmixer
   # exec_always --no-startup-id volumeicon
   exec_always --no-startup-id nm-applet
   # mutant launcher
@@ -293,3 +294,6 @@ hide_edge_borders smart_no_gaps
   exec_always --no-startup-id $scriptdir/column-layout
   # notifications
   exec_always --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd
+  # syncronization daemon
+  exec_always --no-startup-id $singleton syncthing
+  exec_always --no-startup-id $singleton syncthingtray --wait
