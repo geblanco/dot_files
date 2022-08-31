@@ -261,7 +261,7 @@
 for_window [class=".*"] border pixel 0
 # Set inner/outer gaps
 gaps inner 4
-gaps outer 4  
+gaps outer 4
 
 # Smart gaps (gaps used if only more than one container on the workspace)
 # smart_gaps on
@@ -295,5 +295,5 @@ hide_edge_borders smart_no_gaps
   # notifications
   exec_always --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd
   # syncronization daemon
-  exec_always --no-startup-id $singleton syncthing
+  # exec_always --no-startup-id $singleton syncthing
   exec_always --no-startup-id $singleton syncthingtray --wait

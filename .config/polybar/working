@@ -128,14 +128,14 @@
 
 	format = <label>
 	label-font = 2
-	label = CPU %{F#99} %percentage%% %{F-}
+	label = CPU %{F#989897} %percentage%% %{F-}
 
 [module/memory]
 	type = internal/memory
 
 	format = <label>
 	label-font = 2
-	label = RAM %{F#99} %percentage_used%% %{F-}
+	label = RAM %{F#989897} %percentage_used%% %{F-}
 
 [module/keyboard]
     type = internal/xkeyboard
@@ -195,7 +195,7 @@
     animation-charging-framerate = 750
 
     format-discharging = <ramp-capacity> <label-discharging>
-    label-discharging = %{F#99} %percentage%% %{F-}
+    label-discharging = %{F#989897} %percentage%% %{F-}
 
     ramp-capacity-0 = 
     ramp-capacity-1 = 
