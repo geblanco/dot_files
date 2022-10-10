@@ -8,6 +8,10 @@ else
   export ZSH=~/.oh-my-zsh
 fi
 
+if [[ -f $HOME/.config/vpn ]]; then
+  source $HOME/.config/vpn
+fi
+
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
@@ -56,13 +60,13 @@ ZSH_THEME="af-magic-mod"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions virtualenv)
-autoload -Uz compinit
-if [[ "$(find ~/.zcompdump -mmin +1440 | wc -l)" -gt 0 ]]; then
-  compinit
-else
-  compinit -C
-fi
+plugins=(git zsh-autosuggestions virtualenv conda-zsh-completion)
+# autoload -Uz compinit
+# if [[ "$(find ~/.zcompdump -mmin +1440 | wc -l)" -gt 0 ]]; then
+#   compinit
+# else
+#   compinit -C
+# fi
 
 source $ZSH/oh-my-zsh.sh
 
